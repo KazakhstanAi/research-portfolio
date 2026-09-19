@@ -2,14 +2,19 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ResearchArtwork from "./ResearchArtwork.astro";
 import { references } from "../data/references";
+import { voiceReferences } from "../data/voice-references";
 interface Props { locale: "en" | "ru"; }
 const { locale } = Astro.props;
 const ru = locale === "ru";
 const txt = (en: string, russian: string) => ru ? russian : en;
 const geo = (ru ? "/ru" : "") + "/projects/geoai";
-const reading = [references[0], references[1], references[3]];
+const voice = (ru ? "/ru" : "") + "/projects/voice";
+const reading = [
+  ...[references[0], references[1], references[3]].map(ref => ({...ref, project: "GeoAI", page: geo})),
+  ...[voiceReferences[0], voiceReferences[2], voiceReferences[4]].map(ref => ({...ref, project: "VAIS Voice", page: voice}))
+];
 ---
-<BaseLayout lang={locale} canonicalPath={ru ? "/ru" : "/"} title={txt("Vais Research — independent AI research", "Vais Research — независимые AI-исследования")} description={txt("Independent research in satellite monitoring for Kazakhstan and Kazakh–Russian speech technology.", "Личное портфолио исследований: спутниковый мониторинг Казахстана и казахско-русские речевые технологии.")}>
+<BaseLayout lang={locale} canonicalPath={ru ? "/ru" : "/"} title={txt("Vais Research — independent AI research", "Vais Research — независимые AI-исследования")} description={txt("Central Asia GeoAI and VAIS Voice: independent research in satellite monitoring and Kazakh–Russian voice AI evaluation, security and observability.", "Central Asia GeoAI и VAIS Voice: спутниковый мониторинг и платформа оценки, безопасности и аналитики голосового AI для казахско-русской среды.")}>
   <section class="lab-intro wrap">
     <div class="intro-kicker"><span class="eyebrow"><span class="square-mark"></span>{txt("Independent AI research", "Независимые AI-исследования")}</span><span class="eyebrow">{txt("Kazakhstan · Central Asia", "Казахстан · Центральная Азия")}</span></div>
     <div class="intro-grid">
@@ -40,11 +45,11 @@ const reading = [references[0], references[1], references[3]];
         <a class="text-link" href={geo}>{txt("Methods, literature and pilot", "Методы, литература и пилот")} ↗</a>
       </article>
       <article class="research-card speech-card">
-        <div class="card-art"><ResearchArtwork kind="speech" /><span class="art-label">02 / SPEECH INTELLIGENCE</span></div>
-        <div class="card-meta"><span>{txt("Speech technology", "Речевые технологии")}</span><span class="status">{txt("Concept", "Концепция")}</span></div>
-        <h3>Kazakh–Russian Speech</h3>
-        <p>{txt("Understanding speech that moves between two languages. Code-switching ASR and synthetic-voice detection, with a focus on errors and robustness.", "Понимать речь, которая переходит с одного языка на другой. Code-switching ASR и обнаружение синтетического голоса с вниманием к ошибкам и устойчивости.")}</p>
-        <a class="text-link" href="https://github.com/KazakhstanAi/kazakh-russian-speech-intelligence">{txt("Research repository", "Исследовательский репозиторий")} ↗</a>
+        <a class="card-art" href={voice} aria-label={txt("Explore VAIS Voice", "Открыть VAIS Voice")}><ResearchArtwork kind="speech" /><span class="art-label">02 / VOICE AI QUALITY & SECURITY</span><span class="circle-arrow" aria-hidden="true">↗</span></a>
+        <div class="card-meta"><span>{txt("Voice AI evaluation & security", "Оценка и безопасность Voice AI")}</span><span class="status">{txt("Platform design", "Проектирование")}</span></div>
+        <h3><a href={voice}>VAIS Voice</a></h3>
+        <p>{txt("A planned evaluation, security and observability platform for Kazakh–Russian voice AI. Agent testing, STT/TTS, code-switching, synthetic-audio detection and regression checks. First MVP: 100 authorised test calls.", "Проект платформы тестирования, безопасности и мониторинга голосового AI для казахско-русской среды. Voice agents, STT/TTS, code-switching, synthetic audio и регрессии. Первый MVP — 100 разрешённых тестовых звонков.")}</p>
+        <a class="text-link" href={voice}>{txt("Platform, MVP and scientific basis", "Платформа, MVP и научная основа")} ↗</a>
       </article>
     </div>
     <p class="illustration-note">{txt("Graphics are conceptual illustrations, not satellite measurements or audio recordings. Both projects are at the research stage.", "Графика — концептуальные иллюстрации, не спутниковые измерения и не записи речи. Оба проекта на исследовательской стадии.")}</p>
@@ -52,8 +57,8 @@ const reading = [references[0], references[1], references[3]];
 
   <section class="reading-section" id="reading">
     <div class="wrap section-space">
-      <div class="section-heading"><div><p class="eyebrow">{txt("The research behind the research", "Научная основа")}</p><h2>{txt("Start with the evidence.", "Начинать с доказательств.")}</h2></div><a class="text-link" href={geo+"#evidence"}>{txt("All sources and comments", "Все источники и комментарии")} ↗</a></div>
-      <div class="reading-grid">{reading.map((ref,i)=><a class="reading-card" href={geo+"#ref-"+ref.id}><div class="reading-top"><span>0{i+1} / {ref.year}</span><span aria-hidden="true">↗</span></div><span class="reading-type">{ref.type[ru ? 1 : 0]}</span><h3>{ref.title}</h3><p>{ref.authors}</p><span class="reading-venue">{ref.venue}</span></a>)}</div>
+      <div class="section-heading"><div><p class="eyebrow">{txt("The research behind the research", "Научная основа")}</p><h2>{txt("Start with the evidence.", "Начинать с доказательств.")}</h2></div><div class="source-links"><a class="text-link" href={geo+"#evidence"}>GeoAI ↗</a><a class="text-link" href={voice+"#evidence"}>VAIS Voice ↗</a></div></div>
+      <div class="reading-grid">{reading.map((ref,i)=><a class="reading-card" href={ref.page+"#ref-"+ref.id}><div class="reading-top"><span>0{i+1} / {ref.project} / {ref.year}</span><span aria-hidden="true">↗</span></div><span class="reading-type">{ref.type[ru ? 1 : 0]}</span><h3>{ref.title}</h3><p>{ref.authors}</p><span class="reading-venue">{ref.venue}</span></a>)}</div>
       <p class="illustration-note">{txt("Selected external publications, not papers authored by Vais Research. Annotations distinguish established findings from open questions.", "Избранные внешние публикации, не собственные работы Vais Research. В комментариях отделяю выводы авторов от открытых вопросов проекта.")}</p>
     </div>
   </section>

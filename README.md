@@ -3,9 +3,9 @@
 Personal, bilingual research portfolio. A research-lab-inspired editorial layout combines large typography, a featured project, original terrain and speech illustrations, and a curated reading section. It introduces two independent projects without presenting planned research as an operational product.
 
 - [Central Asia GeoAI](https://github.com/KazakhstanAi/central-asia-geoai): a shared geospatial platform, starting with GeoRisk tailings monitoring using InSAR time series and anomaly screening.
-- [Kazakh–Russian Speech Intelligence](https://github.com/KazakhstanAi/kazakh-russian-speech-intelligence): code-switching ASR and voice anti-spoofing, currently at concept stage.
+- [VAIS Voice](https://github.com/KazakhstanAi/kazakh-russian-speech-intelligence): a planned evaluation, security and observability platform for Kazakh–Russian voice AI. VAIS VoiceBench, VoiceGuard, Speech Intelligence and Continuous Evaluation; first MVP target: 100 authorised sandbox test calls. Historical repository URL retained.
 
-GeoAI has a dedicated research page with six annotated primary sources, three comparable systems, a conditional pilot plan, evaluation criteria, and limitations. Evidence for a method is distinguished from evidence for our future implementation. Speech does not have a dedicated page yet.
+GeoAI has a dedicated research page with six annotated primary sources, three comparable systems and a conditional pilot plan. VAIS Voice has a bilingual project page with seven annotated papers, module boundaries, MVP metrics, governance and a roadmap. Evidence for methods is distinguished from evidence for our future implementations. Both are research-stage projects; no operational platform is claimed.
 
 ## Stack and routes
 
@@ -15,6 +15,7 @@ Astro 7, TypeScript, static HTML, custom responsive CSS, system fonts. Navigatio
 | --- | --- | --- |
 | Portfolio | `/` | `/ru` |
 | GeoAI research | `/projects/geoai` | `/ru/projects/geoai` |
+| VAIS Voice | `/projects/voice` | `/ru/projects/voice` |
 
 ## Development
 
@@ -35,6 +36,8 @@ npm run preview
 
 - `src/components/LandingPage.astro`: bilingual introduction and project summaries.
 - `src/components/GeoProject.astro`: bilingual research proposal and evaluation plan.
+- `src/components/VoiceProject.astro`: bilingual VAIS Voice platform concept, MVP and limitations.
+- `src/data/voice-references.ts`: seven annotated voice-evaluation, local-speech and anti-spoofing sources; distinguishes academic VoiceBench from our independent VAIS VoiceBench module.
 - `src/components/ResearchArtwork.astro`: original deterministic SVG illustrations, not real satellite measurements or recorded audio. No external assets or animation dependencies.
 - `src/data/references.ts`: annotated papers, documentation, and comparable systems. Keep publication types and limitations explicit when updating sources.
 - `src/layouts/BaseLayout.astro`: metadata, navigation, language switching, footer.
