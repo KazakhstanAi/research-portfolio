@@ -14,7 +14,7 @@ const reading = [
   ...[voiceReferences[0], voiceReferences[2], voiceReferences[4]].map(ref => ({...ref, project: "VAIS Voice", page: voice}))
 ];
 ---
-<BaseLayout lang={locale} canonicalPath={ru ? "/ru" : "/"} title={txt("Vais Research — independent AI research", "Vais Research — независимые AI-исследования")} description={txt("Central Asia GeoAI and VAIS Voice: independent research in satellite monitoring and Kazakh–Russian voice AI evaluation, security and observability.", "Central Asia GeoAI и VAIS Voice: спутниковый мониторинг и платформа оценки, безопасности и аналитики голосового AI для казахско-русской среды.")}>
+<BaseLayout lang={locale} canonicalPath={ru ? "/ru" : "/"} title={txt("Vais Research — independent AI research", "Vais Research — независимые AI-исследования")} description={txt("Central Asia GeoAI and VAIS Voice: independent research in satellite monitoring and synthetic speech detection for Kazakh–Russian environments.", "Central Asia GeoAI и VAIS Voice: спутниковый мониторинг и обнаружение синтетической речи в казахско-русской среде.")}>
   <section class="lab-intro wrap">
     <div class="intro-kicker"><span class="eyebrow"><span class="square-mark"></span>{txt("Independent AI research", "Независимые AI-исследования")}</span><span class="eyebrow">{txt("Kazakhstan · Central Asia", "Казахстан · Центральная Азия")}</span></div>
     <div class="intro-grid">
@@ -45,11 +45,11 @@ const reading = [
         <a class="text-link" href={geo}>{txt("Methods, literature and pilot", "Методы, литература и пилот")} ↗</a>
       </article>
       <article class="research-card speech-card">
-        <a class="card-art" href={voice} aria-label={txt("Explore VAIS Voice", "Открыть VAIS Voice")}><ResearchArtwork kind="speech" /><span class="art-label">02 / VOICE AI QUALITY & SECURITY</span><span class="circle-arrow" aria-hidden="true">↗</span></a>
-        <div class="card-meta"><span>{txt("Voice AI evaluation & security", "Оценка и безопасность Voice AI")}</span><span class="status">{txt("Platform design", "Проектирование")}</span></div>
+        <a class="card-art" href={voice} aria-label={txt("Explore VAIS Voice", "Открыть VAIS Voice")}><ResearchArtwork kind="speech" /><span class="art-label">02 / AUDIO AUTHENTICITY</span><span class="circle-arrow" aria-hidden="true">↗</span></a>
+        <div class="card-meta"><span>Synthetic speech detection</span><span class="status">Research → Product MVP</span></div>
         <h3><a href={voice}>VAIS Voice</a></h3>
-        <p>{txt("A planned evaluation, security and observability platform for Kazakh–Russian voice AI. Agent testing, STT/TTS, code-switching, synthetic-audio detection and regression checks. First MVP: 100 authorised test calls.", "Проект платформы тестирования, безопасности и мониторинга голосового AI для казахско-русской среды. Voice agents, STT/TTS, code-switching, synthetic audio и регрессии. Первый MVP — 100 разрешённых тестовых звонков.")}</p>
-        <a class="text-link" href={voice}>{txt("Platform, MVP and scientific basis", "Платформа, MVP и научная основа")} ↗</a>
+        <p>{txt("Synthetic speech detection for Kazakh, Russian and mixed speech. Research on unseen generators and real audio channels. Planned MVP: upload a short recording and inspect its synthetic score, quality and calibration status.", "Обнаружение синтетической речи на казахском, русском и в смешанной речи. Исследование новых генераторов и реальных аудиоканалов. Планируемый MVP: загрузить короткую запись и получить synthetic score, качество сигнала и статус калибровки.")}</p>
+        <a class="text-link" href={voice}>{txt("Detector, benchmark and MVP", "Детектор, benchmark и MVP")} ↗</a>
       </article>
     </div>
     <p class="illustration-note">{txt("Graphics are conceptual illustrations, not satellite measurements or audio recordings. Both projects are at the research stage.", "Графика — концептуальные иллюстрации, не спутниковые измерения и не записи речи. Оба проекта на исследовательской стадии.")}</p>

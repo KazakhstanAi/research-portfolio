@@ -3,9 +3,9 @@
 Personal, bilingual research portfolio. A research-lab-inspired editorial layout combines large typography, a featured project, original terrain and speech illustrations, and a curated reading section. It introduces two independent projects without presenting planned research as an operational product.
 
 - [Central Asia GeoAI](https://github.com/KazakhstanAi/central-asia-geoai): a shared geospatial platform, starting with GeoRisk tailings monitoring using InSAR time series and anomaly screening.
-- [VAIS Voice](https://github.com/KazakhstanAi/kazakh-russian-speech-intelligence): a planned evaluation, security and observability platform for Kazakh–Russian voice AI. VAIS VoiceBench, VoiceGuard, Speech Intelligence and Continuous Evaluation; first MVP target: 100 authorised sandbox test calls. Historical repository URL retained.
+- [VAIS Voice](https://github.com/KazakhstanAi/kazakh-russian-speech-intelligence): synthetic speech authenticity for Kazakh–Russian environments. Planned MVP: audio upload → detector → score with quality/calibration information. A protected KZ/RU benchmark validates the detector; it is R&D infrastructure, not a separate product. Historical repository URL retained.
 
-GeoAI has a dedicated research page with six annotated primary sources, three comparable systems and a conditional pilot plan. VAIS Voice has a bilingual project page with seven annotated papers, module boundaries, MVP metrics, governance and a roadmap. Evidence for methods is distinguished from evidence for our future implementations. Both are research-stage projects; no operational platform is claimed.
+GeoAI has a dedicated research page with six annotated primary sources, three comparable systems and a conditional pilot plan. VAIS Voice has a bilingual page with six relevant sources, an audio-processing pipeline, detection metrics and a roadmap. Both are research-stage projects. The voice report preview is explicitly static: its 0.87 score is illustrative, its model name is proposed and its upload/analysis controls are disabled. No detector or inference service is claimed to be available.
 
 ## Stack and routes
 
@@ -36,8 +36,8 @@ npm run preview
 
 - `src/components/LandingPage.astro`: bilingual introduction and project summaries.
 - `src/components/GeoProject.astro`: bilingual research proposal and evaluation plan.
-- `src/components/VoiceProject.astro`: bilingual VAIS Voice platform concept, MVP and limitations.
-- `src/data/voice-references.ts`: seven annotated voice-evaluation, local-speech and anti-spoofing sources; distinguishes academic VoiceBench from our independent VAIS VoiceBench module.
+- `src/components/VoiceProject.astro`: bilingual detector concept, static report mockup, evaluation protocol and limitations.
+- `src/data/voice-references.ts`: six annotated detection/generalization, regional-speech and quality-control sources. Agent-testing literature is outside the current scope.
 - `src/components/ResearchArtwork.astro`: original deterministic SVG illustrations, not real satellite measurements or recorded audio. No external assets or animation dependencies.
 - `src/data/references.ts`: annotated papers, documentation, and comparable systems. Keep publication types and limitations explicit when updating sources.
 - `src/layouts/BaseLayout.astro`: metadata, navigation, language switching, footer.
