@@ -12,7 +12,7 @@ const origin = Astro.site;
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#f7f5ef" />
+  <meta name="theme-color" content="#f5f3ec" />
   <meta name="description" content={description} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   {origin && <><link rel="canonical" href={new URL(canonicalPath, origin)} /><link rel="alternate" hreflang={ru ? "en" : "ru"} href={new URL(alternatePath, origin)} /></>}
@@ -25,14 +25,16 @@ const origin = Astro.site;
 <body>
   <a class="skip" href="#main">{ru ? "К содержанию" : "Skip to content"}</a>
   <header class="header wrap">
-    <a href={home} class="brand">Vais <i>Research</i><span class="brand-dot">.</span></a>
+    <a href={home} class="brand"><svg viewBox="0 0 32 32" width="30" height="30" fill="none" aria-hidden="true"><path d="M3 6L14 27H18L29 6H24L16 21L8 6Z" fill="currentColor"/><path d="M14 6H19L16.5 11Z" fill="#bb593e"/></svg><span>Vais Research</span></a>
     <nav aria-label={ru ? "Навигация" : "Navigation"}>
       <a href={home + "#projects"}>{ru ? "Проекты" : "Projects"}</a>
+      <a href={home + "#reading"}>{ru ? "Материалы" : "Reading"}</a>
       <a href={home + "#about"}>{ru ? "Об авторе" : "About"}</a>
+      <a class="nav-github" href="https://github.com/MataVsn">GitHub ↗</a>
       <a href={alternatePath} lang={ru ? "en" : "ru"} hreflang={ru ? "en" : "ru"} class="lang">{ru ? "EN" : "RU"}</a>
     </nav>
   </header>
   <main id="main"><slot /></main>
-  <footer class="footer wrap"><span>© 2026 Vais Research</span><span>{ru ? "Личное исследовательское портфолио" : "Independent research portfolio"}</span><a href="https://github.com/MataVsn">GitHub ↗</a></footer>
+  <footer class="footer wrap"><a class="footer-brand" href={home}>Vais Research</a><span>© 2026 · {ru ? "Личное исследовательское портфолио" : "Independent research portfolio"}</span><a href={home + "#projects"}>{ru ? "К исследованиям" : "Explore the research"} ↗</a></footer>
 </body>
 </html>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ResearchArtwork from "./ResearchArtwork.astro";
 import { references, analogs } from "../data/references";
 interface Props { locale: "en" | "ru"; }
 const { locale } = Astro.props;
@@ -20,6 +21,8 @@ const sections = [
     <p class="lead">{txt("Can satellite observations help identify tailings facilities that need closer engineering attention?","Могут ли спутниковые наблюдения помочь находить хвостохранилища, которым требуется дополнительная инженерная проверка?")}</p>
     <div class="project-meta"><span>GeoRisk / Tailings Monitoring</span><span>{txt("Research proposal","Исследовательский проект")}</span><span>{txt("Pilot: 3–5 facilities","Пилот: 3–5 объектов")}</span></div>
   </div>
+  <figure class="project-cover"><ResearchArtwork /><figcaption><span>GEORISK / TAILINGS MONITORING</span><span>{txt("Conceptual terrain illustration · not observation data", "Концептуальная графика рельефа · не данные наблюдений")}</span></figcaption></figure>
+  <div class="project-overview"><div><span>{txt("Data", "Данные")}</span><strong>Sentinel-1 SLC</strong></div><div><span>{txt("Approach", "Подход")}</span><strong>InSAR + Time series</strong></div><div><span>{txt("Planned scope", "Планируемый масштаб")}</span><strong>{txt("3–5 facilities", "3–5 объектов")}</strong></div><div><span>{txt("Stage", "Стадия")}</span><strong>{txt("Research proposal", "Исследовательский проект")}</strong></div></div>
   <div class="article-grid">
     <nav class="toc" aria-label={txt("On this page","На этой странице")}>{sections.map(([id,label])=><a href={"#"+id}>{label}</a>)}<a href="https://github.com/KazakhstanAi/central-asia-geoai">{txt("Repository","Репозиторий")} ↗</a></nav>
     <div class="article">
@@ -92,4 +95,3 @@ const sections = [
   </div>
 </div>
 </BaseLayout>
-

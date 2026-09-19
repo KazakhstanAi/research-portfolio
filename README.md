@@ -1,6 +1,6 @@
 # Vais Research
 
-Personal, bilingual research portfolio. A quiet editorial layout introduces two independent projects without presenting planned research as an operational product.
+Personal, bilingual research portfolio. A research-lab-inspired editorial layout combines large typography, a featured project, original terrain and speech illustrations, and a curated reading section. It introduces two independent projects without presenting planned research as an operational product.
 
 - [Central Asia GeoAI](https://github.com/KazakhstanAi/central-asia-geoai): a shared geospatial platform, starting with GeoRisk tailings monitoring using InSAR time series and anomaly screening.
 - [Kazakh–Russian Speech Intelligence](https://github.com/KazakhstanAi/kazakh-russian-speech-intelligence): code-switching ASR and voice anti-spoofing, currently at concept stage.
@@ -35,11 +35,14 @@ npm run preview
 
 - `src/components/LandingPage.astro`: bilingual introduction and project summaries.
 - `src/components/GeoProject.astro`: bilingual research proposal and evaluation plan.
+- `src/components/ResearchArtwork.astro`: original deterministic SVG illustrations, not real satellite measurements or recorded audio. No external assets or animation dependencies.
 - `src/data/references.ts`: annotated papers, documentation, and comparable systems. Keep publication types and limitations explicit when updating sources.
 - `src/layouts/BaseLayout.astro`: metadata, navigation, language switching, footer.
 - `src/styles/global.css`: shared editorial and responsive styles.
 
 Research statements describe proposed work, not validated predictions. An InSAR anomaly must not be presented as a collapse probability or failure date. Commercial examples illustrate adoption, not independently verified accuracy.
+
+Design references: [Anthropic](https://www.anthropic.com/) and [OpenAI Research](https://openai.com/research/). These are visual and editorial references only; Vais Research is independent and uses its own branding, text, and artwork.
 
 ## Deployment
 
