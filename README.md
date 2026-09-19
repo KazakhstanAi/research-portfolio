@@ -46,7 +46,7 @@ Design references: [Anthropic](https://www.anthropic.com/) and [OpenAI Research]
 
 ## Deployment
 
-`npm run build` writes the static site to `dist/`. No host or domain is selected. Set `SITE_URL` to the actual production origin when building to enable canonical and alternate-language metadata; otherwise those links are omitted. Do not use a speculative domain.
+`npm run build` writes the static site to `dist/`. The production origin is `https://vaislabs.com`, used for canonical and alternate-language metadata. The Astro configuration defaults to this origin; a build environment can explicitly set `SITE_URL=https://vaislabs.com` or override it for another deployment. This setting does not configure hosting or DNS.
 
 The existing GitHub organization and repository URLs are unchanged by the Vais Research branding. CI checks types and builds the site; it does not deploy it.
 
