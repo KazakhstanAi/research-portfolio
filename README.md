@@ -1,54 +1,52 @@
-# Kazakhstan AI Research Portfolio
+# Vais Research
 
-Bilingual presentation site for two independent research initiatives:
+Personal, bilingual research portfolio. A quiet editorial layout introduces two independent projects without presenting planned research as an operational product.
 
-- [Central Asia GeoAI](https://github.com/KazakhstanAi/central-asia-geoai) — an extensible geospatial intelligence platform whose first research module investigates InSAR anomaly screening for tailings facilities;
-- [Kazakh–Russian Speech Intelligence](https://github.com/KazakhstanAi/kazakh-russian-speech-intelligence) — code-switching ASR and robust synthetic-speech detection.
+- [Central Asia GeoAI](https://github.com/KazakhstanAi/central-asia-geoai): a shared geospatial platform, starting with GeoRisk tailings monitoring using InSAR time series and anomaly screening.
+- [Kazakh–Russian Speech Intelligence](https://github.com/KazakhstanAi/kazakh-russian-speech-intelligence): code-switching ASR and voice anti-spoofing, currently at concept stage.
 
-The site presents research questions, first milestones, evaluation principles, limitations, and links to the technical repositories. It does not claim that either research system is already operational.
+GeoAI has a dedicated research page with six annotated primary sources, three comparable systems, a conditional pilot plan, evaluation criteria, and limitations. Evidence for a method is distinguished from evidence for our future implementation. Speech does not have a dedicated page yet.
 
-## Stack
+## Stack and routes
 
-- Astro 7 and TypeScript;
-- static HTML output;
-- framework-free client JavaScript;
-- custom responsive CSS and inline SVG visualisations;
-- English at `/` and Russian at `/ru`.
+Astro 7, TypeScript, static HTML, custom responsive CSS, system fonts. Navigation and content work without client-side JavaScript.
+
+| Page | English | Russian |
+| --- | --- | --- |
+| Portfolio | `/` | `/ru` |
+| GeoAI research | `/projects/geoai` | `/ru/projects/geoai` |
 
 ## Development
 
 Requires Node.js 22.12 or newer.
 
-```bash
-npm install
-npm run dev
+```sh
+npm ci
+npm run dev -- --host 127.0.0.1 --port 4321
 ```
 
-Quality checks and production build:
-
-```bash
+```sh
 npm run check
 npm run build
 npm run preview
 ```
 
-The configured canonical origin is `https://research.kazakhstan.ai`. Change `site` in `astro.config.mjs` before deployment if another production origin is selected.
+## Content
 
-## Structure
+- `src/components/LandingPage.astro`: bilingual introduction and project summaries.
+- `src/components/GeoProject.astro`: bilingual research proposal and evaluation plan.
+- `src/data/references.ts`: annotated papers, documentation, and comparable systems. Keep publication types and limitations explicit when updating sources.
+- `src/layouts/BaseLayout.astro`: metadata, navigation, language switching, footer.
+- `src/styles/global.css`: shared editorial and responsive styles.
 
-```text
-public/                 Static metadata assets
-src/components/         Page and data-visualisation components
-src/data/content.ts     English and Russian copy
-src/layouts/            Document metadata and shared layout
-src/pages/              Localised routes
-src/styles/             Design system and responsive styles
-```
+Research statements describe proposed work, not validated predictions. An InSAR anomaly must not be presented as a collapse probability or failure date. Commercial examples illustrate adoption, not independently verified accuracy.
 
 ## Deployment
 
-`npm run build` generates a static site in `dist/`. It can be deployed to GitHub Pages, Cloudflare Pages, Vercel, Netlify, or any static host. No deployment workflow is enabled until the production host and domain are chosen.
+`npm run build` writes the static site to `dist/`. No host or domain is selected. Set `SITE_URL` to the actual production origin when building to enable canonical and alternate-language metadata; otherwise those links are omitted. Do not use a speculative domain.
+
+The existing GitHub organization and repository URLs are unchanged by the Vais Research branding. CI checks types and builds the site; it does not deploy it.
 
 ## License
 
-Code and original visual assets are available under the [MIT License](LICENSE). Project names, research claims, and third-party materials may have separate terms.
+Original code and assets: [MIT](LICENSE). Linked papers, commercial product names, and third-party materials retain their own rights; papers are linked, not redistributed.

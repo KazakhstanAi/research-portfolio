@@ -1,239 +1,37 @@
 ---
-import { content, type Locale } from "../data/content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import GeoVisual from "./GeoVisual.astro";
-import SpeechVisual from "./SpeechVisual.astro";
-
-interface Props {
-  locale: Locale;
-}
-
+interface Props { locale: "en" | "ru"; }
 const { locale } = Astro.props;
-const t = content[locale];
-const canonicalPath = locale === "en" ? "/" : "/ru";
-const githubOrg = "https://github.com/KazakhstanAi";
+const ru = locale === "ru";
+const geo = (ru ? "/ru" : "") + "/projects/geoai";
 ---
-
-<BaseLayout lang={locale} title={t.meta.title} description={t.meta.description} canonicalPath={canonicalPath}>
-  <a class="skip-link" href="#main">{locale === "ru" ? "К содержанию" : "Skip to content"}</a>
-
-  <header class="site-header" id="top">
-    <div class="shell header-inner">
-      <a class="brand" href={canonicalPath} aria-label="Kazakhstan AI home">
-        <span class="brand-mark" aria-hidden="true"><i></i><i></i></span>
-        <span>Kazakhstan <b>AI</b></span>
-      </a>
-
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <span class="sr-only">{t.nav.menu}</span>
-        <i></i><i></i>
-      </button>
-
-      <nav class="site-nav" id="site-nav" aria-label={t.nav.menu}>
-        <a href="#projects">{t.nav.projects}</a>
-        <a href="#approach">{t.nav.approach}</a>
-        <a href="#about">{t.nav.about}</a>
-        <a class="language" href={t.nav.languageHref} hreflang={locale === "en" ? "ru" : "en"}>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5"></circle><path d="M2.8 10h14.4M10 2.5c2.8 3 2.8 12 0 15m0-15c-2.8 3-2.8 12 0 15"></path></svg>
-          {t.nav.language}
-        </a>
-      </nav>
+<BaseLayout lang={locale} canonicalPath={ru ? "/ru" : "/"} title={ru ? "Vais Research — исследования и проекты" : "Vais Research — projects and research"} description={ru ? "Личное портфолио исследований: спутниковый мониторинг Казахстана и казахско-русские речевые технологии." : "Independent research in satellite monitoring for Kazakhstan and Kazakh–Russian speech technology."}>
+  <section class="intro wrap">
+    <p class="eyebrow">{ru ? "Заметки, исследования, работа в процессе" : "Notes, research, work in progress"}</p>
+    <h1>{ru ? "Исследовать.\nПроверять.\nСоздавать." : "Observe.\nQuestion.\nBuild."}</h1>
+    <div class="intro-aside">
+      <p>{ru ? "Я исследую, как машинное обучение помогает понимать изменения на земле и живую речь." : "I explore how machine learning can help us understand changes on the ground and the way people speak."}</p>
+      <p class="muted">{ru ? "Здесь собираю два проекта, их научную основу и планы экспериментов. Оба пока на стадии исследования." : "This is a home for two projects, their scientific foundations and planned experiments. Both are at the research stage."}</p>
+      <a class="text-link" href="#projects">{ru ? "К проектам ↓" : "Explore the work ↓"}</a>
     </div>
-  </header>
-
-  <main id="main">
-    <section class="hero shell">
-      <div class="hero-copy reveal">
-        <p class="eyebrow"><span></span>{t.hero.eyebrow}</p>
-        <h1>
-          {t.hero.titleLead.map((line) => <span>{line}</span>)}
-          <em>{t.hero.titleAccent.map((line) => <span>{line}</span>)}</em>
-        </h1>
-        <p class="hero-text">{t.hero.text}</p>
-        <div class="hero-actions">
-          <a class="button primary" href="#projects">{t.hero.primary}<span aria-hidden="true">↓</span></a>
-          <a class="button secondary" href={githubOrg} target="_blank" rel="noreferrer">{t.hero.secondary}<span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="hero-status">
-          <span><i></i>{t.hero.signal}</span>
-          <span>{t.hero.location}</span>
-        </div>
-      </div>
-
-      <div class="hero-orbit reveal delay-1" aria-hidden="true">
-        <div class="orbital-grid"></div>
-        <div class="planet">
-          <svg viewBox="0 0 360 360">
-            <defs>
-              <radialGradient id="planet-fill" cx="34%" cy="30%"><stop stop-color="#245944"/><stop offset="1" stop-color="#091b15"/></radialGradient>
-              <clipPath id="planet-clip"><circle cx="180" cy="180" r="116"/></clipPath>
-            </defs>
-            <circle cx="180" cy="180" r="116" fill="url(#planet-fill)" stroke="#77efb0" stroke-opacity=".3" />
-            <g clip-path="url(#planet-clip)" fill="none" stroke="#a1f8c8" stroke-opacity=".15">
-              <ellipse cx="180" cy="180" rx="112" ry="42"/><ellipse cx="180" cy="180" rx="112" ry="82"/>
-              <ellipse cx="180" cy="180" rx="48" ry="116"/><ellipse cx="180" cy="180" rx="87" ry="116"/>
-              <path d="M40 180h280"/>
-            </g>
-            <path d="M119 146c18-18 31-20 47-12 10 5 15-8 31-2 9 3 13 15 27 18 16 3 25 15 18 29-5 9 4 18-8 27-15 11-22 2-33 15-12 15-27 20-42 8-10-8-5-22-17-29-16-10-27-8-29-25-2-13-5-20 6-29Z" fill="#8fffc1" fill-opacity=".16" stroke="#9affc7" stroke-opacity=".5" />
-            <ellipse cx="180" cy="180" rx="164" ry="74" transform="rotate(-26 180 180)" fill="none" stroke="#8fffc1" stroke-opacity=".48" />
-            <circle cx="322" cy="116" r="7" fill="#ffbf69" />
-          </svg>
-          <div class="orbit-pulse one"></div><div class="orbit-pulse two"></div>
-        </div>
-        <div class="coordinate-card card-north"><span>ASTANA</span><b>51.17° N</b></div>
-        <div class="coordinate-card card-east"><span>ALMATY</span><b>76.89° E</b></div>
-        <div class="signal-card"><i></i><span>SIGNAL</span><b>LOCKED</b></div>
-      </div>
-    </section>
-
-    <section class="metric-band" aria-label={locale === "ru" ? "Ключевые показатели" : "Key figures"}>
-      <div class="shell metrics">
-        {t.metrics.map((metric) => (
-          <div class="metric reveal">
-            <strong>{metric.value}</strong>
-            <span>{metric.label}</span>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <section class="projects-section shell" id="projects">
-      <div class="section-intro reveal">
-        <p class="eyebrow"><span></span>{t.intro.eyebrow}</p>
-        <h2>{t.intro.title}</h2>
-        <p>{t.intro.text}</p>
-      </div>
-
-      <article class="project project-geo reveal">
-        <div class="project-content">
-          <div class="project-kicker"><span>{t.geo.number}</span>{t.geo.category}</div>
-          <h3>{t.geo.title}</h3>
-          <p class="project-summary">{t.geo.summary}</p>
-          <div class="mvp-block">
-            <small>{t.geo.mvpLabel}</small>
-            <strong>{t.geo.mvp}</strong>
-          </div>
-          <div class="question-block">
-            <small>{t.geo.questionLabel}</small>
-            <p>{t.geo.question}</p>
-          </div>
-          <ul class="feature-list">
-            {t.geo.points.map((point) => <li><span>✓</span>{point}</li>)}
-          </ul>
-          <div class="tags">{t.geo.tags.map((tag) => <span>{tag}</span>)}</div>
-          <a class="project-link" href="https://github.com/KazakhstanAi/central-asia-geoai" target="_blank" rel="noreferrer">
-            {t.geo.repo}<span aria-hidden="true">↗</span>
-          </a>
-        </div>
-        <div class="project-display">
-          <GeoVisual lang={locale} />
-          <p class="research-note"><span>!</span>{t.geo.note}</p>
-        </div>
-      </article>
-
-      <article class="project project-speech reveal">
-        <div class="project-content">
-          <div class="project-kicker"><span>{t.speech.number}</span>{t.speech.category}</div>
-          <h3>{t.speech.title}</h3>
-          <p class="project-summary">{t.speech.summary}</p>
-          <div class="mvp-block speech-mvp">
-            <small>{t.speech.mvpLabel}</small>
-            <strong>{t.speech.mvp}</strong>
-          </div>
-          <div class="question-block">
-            <small>{t.speech.questionLabel}</small>
-            <p>{t.speech.question}</p>
-          </div>
-          <ul class="feature-list">
-            {t.speech.points.map((point) => <li><span>✓</span>{point}</li>)}
-          </ul>
-          <div class="tags speech-tags">{t.speech.tags.map((tag) => <span>{tag}</span>)}</div>
-          <a class="project-link amber-link" href="https://github.com/KazakhstanAi/kazakh-russian-speech-intelligence" target="_blank" rel="noreferrer">
-            {t.speech.repo}<span aria-hidden="true">↗</span>
-          </a>
-        </div>
-        <div class="project-display speech-display">
-          <SpeechVisual lang={locale} />
-          <p class="research-note amber-note"><span>!</span>{t.speech.note}</p>
-        </div>
-      </article>
-    </section>
-
-    <section class="approach-section" id="approach">
-      <div class="shell">
-        <div class="approach-head reveal">
-          <div>
-            <p class="eyebrow"><span></span>{t.approach.eyebrow}</p>
-            <h2>{t.approach.title}</h2>
-          </div>
-          <p>{t.approach.text}</p>
-        </div>
-        <div class="principles">
-          {t.approach.items.map((item) => (
-            <article class="principle reveal">
-              <span>{item.index}</span>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="path-section shell">
-      <div class="path-title reveal">
-        <p class="eyebrow"><span></span>{t.path.eyebrow}</p>
-        <h2>{t.path.title}</h2>
-      </div>
-      <div class="path-steps">
-        {t.path.stages.map((stage) => (
-          <article class="path-step reveal">
-            <span>{stage.phase}</span>
-            <div><h3>{stage.title}</h3><p>{stage.text}</p></div>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="about-section" id="about">
-      <div class="about-grid shell">
-        <div class="about-mark reveal" aria-hidden="true">
-          <span>KZ</span><i>AI</i>
-        </div>
-        <div class="about-copy reveal">
-          <p class="eyebrow"><span></span>{t.about.eyebrow}</p>
-          <h2>{t.about.title}</h2>
-          <p>{t.about.text}</p>
-          <a class="button primary" href={githubOrg} target="_blank" rel="noreferrer">{t.about.cta}<span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="shell footer-inner">
-      <div><strong>Kazakhstan AI</strong><span>{t.footer.line}</span></div>
-      <p>{t.footer.rights}</p>
-      <a href="#top">{t.footer.top}<span aria-hidden="true">↑</span></a>
-    </div>
-  </footer>
-
-  <script>
-    const toggle = document.querySelector<HTMLButtonElement>(".nav-toggle");
-    const nav = document.querySelector<HTMLElement>(".site-nav");
-
-    toggle?.addEventListener("click", () => {
-      const open = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", String(!open));
-      nav?.classList.toggle("is-open", !open);
-    });
-
-    nav?.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        toggle?.setAttribute("aria-expanded", "false");
-        nav?.classList.remove("is-open");
-      });
-    });
-
-  </script>
+    <div class="margin-note">{ru ? "Из Казахстана,\nс вниманием к региону." : "Based in Kazakhstan.\nAttentive to the region."}</div>
+  </section>
+  <section class="wrap projects" id="projects">
+    <div class="section-label"><span>{ru ? "Текущие проекты" : "Current projects"}</span><span>01 — 02</span></div>
+    <article class="project-row">
+      <div class="project-index">01 / {ru ? "Спутниковые данные" : "Earth observation"}</div>
+      <div class="project-description"><h2><a href={geo}>Central Asia<br/>GeoAI</a></h2><p>{ru ? "Геопространственная платформа для Казахстана и Центральной Азии. Первый модуль — поиск необычных изменений деформации хвостохранилищ по спутниковым наблюдениям." : "A geospatial platform for Kazakhstan and Central Asia. Its first module studies unusual deformation patterns at tailings facilities using satellite observations."}</p><a class="text-link" href={geo}>{ru ? "Постановка задачи, методы и литература" : "The question, methods and literature"} ↗</a></div>
+      <div class="project-aside"><span class="status">{ru ? "Планируется пилот" : "Pilot planned"}</span><dl><dt>{ru ? "Первый модуль" : "First module"}</dt><dd>GeoRisk / Tailings</dd><dt>{ru ? "Масштаб" : "Scope"}</dt><dd>{ru ? "3–5 объектов" : "3–5 facilities"}</dd><dt>{ru ? "Методы" : "Methods"}</dt><dd>InSAR · Time series · ML</dd></dl></div>
+    </article>
+    <article class="project-row">
+      <div class="project-index">02 / {ru ? "Речевые технологии" : "Speech technology"}</div>
+      <div class="project-description"><h2>Kazakh–Russian<br/>Speech Intelligence</h2><p>{ru ? "Распознавание казахско-русской речи с переключением языков и обнаружение синтетического аудио. В центре внимания — ошибки на границах языков и устойчивость к незнакомым генераторам." : "Kazakh–Russian code-switching recognition and synthetic-audio detection. The focus is on errors around language switches and robustness to unfamiliar generators."}</p><a class="text-link" href="https://github.com/KazakhstanAi/kazakh-russian-speech-intelligence">{ru ? "Исследовательский репозиторий" : "Research repository"} ↗</a><p class="small muted">{ru ? "Отдельная страница проекта готовится." : "A dedicated project page is in preparation."}</p></div>
+      <div class="project-aside"><span class="status">{ru ? "Концепция" : "Concept"}</span><dl><dt>{ru ? "Направления" : "Tracks"}</dt><dd>ASR / Anti-spoofing</dd><dt>{ru ? "Языки" : "Languages"}</dt><dd>{ru ? "Казахский + русский" : "Kazakh + Russian"}</dd><dt>{ru ? "Оценка" : "Evaluation"}</dt><dd>WER · CER · EER</dd></dl></div>
+    </article>
+  </section>
+  <section class="about wrap" id="about">
+    <p class="eyebrow">{ru ? "Об этом сайте" : "About this space"}</p>
+    <h2>{ru ? "Личная работа,\nоткрытые вопросы." : "Independent work.\nOpen questions."}</h2>
+    <div><p>{ru ? "Vais Research — моё личное исследовательское портфолио. Мне интересны задачи, где локальные условия действительно влияют на выбор данных и методов: сезонность спутниковых наблюдений, особенности объектов Казахстана и смешанная казахско-русская речь." : "Vais Research is my independent research portfolio. I am interested in problems where local conditions shape the choice of data and methods: seasonal satellite observations, facilities in Kazakhstan and mixed Kazakh–Russian speech."}</p><p>{ru ? "Начинаю с небольших проверяемых экспериментов. Здесь будут появляться результаты, разборы ошибок и выводы — в том числе если простая модель окажется лучше сложной." : "I start with small, testable experiments. This site will collect results, error analyses and lessons learned, including cases where a simple model works better than a complex one."}</p><a class="text-link" href="https://github.com/MataVsn">{ru ? "Мой профиль на GitHub" : "My GitHub profile"} ↗</a></div>
+  </section>
 </BaseLayout>

@@ -1,39 +1,38 @@
 ---
 import "../styles/global.css";
-
-interface Props {
-  lang: "en" | "ru";
-  title: string;
-  description: string;
-  canonicalPath: string;
-}
-
+interface Props { lang: "en" | "ru"; title: string; description: string; canonicalPath: string; }
 const { lang, title, description, canonicalPath } = Astro.props;
-const canonical = new URL(canonicalPath, Astro.site);
-const alternate = new URL(lang === "en" ? "/ru" : "/", Astro.site);
+const ru = lang === "ru";
+const home = ru ? "/ru" : "/";
+const alternatePath = ru ? canonicalPath.replace(/^\/ru/, "") || "/" : "/ru" + (canonicalPath === "/" ? "" : canonicalPath);
+const origin = Astro.site;
 ---
-
 <!doctype html>
 <html lang={lang}>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="theme-color" content="#07130f" />
-    <meta name="description" content={description} />
-    <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang={lang === "en" ? "ru" : "en"} href={alternate} />
-    <link rel="alternate" hreflang="x-default" href={new URL("/", Astro.site)} />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL("/og-image.svg", Astro.site)} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <title>{title}</title>
-  </head>
-  <body>
-    <slot />
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7f5ef" />
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  {origin && <><link rel="canonical" href={new URL(canonicalPath, origin)} /><link rel="alternate" hreflang={ru ? "en" : "ru"} href={new URL(alternatePath, origin)} /></>}
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:site_name" content="Vais Research" />
+  <title>{title}</title>
+</head>
+<body>
+  <a class="skip" href="#main">{ru ? "К содержанию" : "Skip to content"}</a>
+  <header class="header wrap">
+    <a href={home} class="brand">Vais <i>Research</i><span class="brand-dot">.</span></a>
+    <nav aria-label={ru ? "Навигация" : "Navigation"}>
+      <a href={home + "#projects"}>{ru ? "Проекты" : "Projects"}</a>
+      <a href={home + "#about"}>{ru ? "Об авторе" : "About"}</a>
+      <a href={alternatePath} lang={ru ? "en" : "ru"} hreflang={ru ? "en" : "ru"} class="lang">{ru ? "EN" : "RU"}</a>
+    </nav>
+  </header>
+  <main id="main"><slot /></main>
+  <footer class="footer wrap"><span>© 2026 Vais Research</span><span>{ru ? "Личное исследовательское портфолио" : "Independent research portfolio"}</span><a href="https://github.com/MataVsn">GitHub ↗</a></footer>
+</body>
 </html>

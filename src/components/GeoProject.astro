@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { references, analogs } from "../data/references";
+interface Props { locale: "en" | "ru"; }
+const { locale } = Astro.props;
+const ru = locale === "ru";
+const l = ru ? 1 : 0;
+const txt = (en: string, russian: string) => ru ? russian : en;
+const sections = [
+ ["question",txt("The question","Задача")],["method",txt("Methods","Методы")],
+ ["evidence",txt("Scientific basis","Научная основа")],["analogs",txt("Existing approaches","Аналоги")],
+ ["pilot",txt("Pilot and evaluation","Пилот и оценка")],["limits",txt("Open questions","Открытые вопросы")]
+];
+---
+<BaseLayout lang={locale} canonicalPath={(ru ? "/ru" : "") + "/projects/geoai"} title="Central Asia GeoAI — Vais Research" description={txt("Research plan, annotated scientific literature and existing approaches for InSAR tailings monitoring in Kazakhstan.","План исследования, научные источники и аналоги для InSAR-мониторинга хвостохранилищ Казахстана.")}>
+<div class="wrap">
+  <div class="project-hero">
+    <a class="text-link" href={(ru ? "/ru" : "/") + "#projects"}>← {txt("All projects","Все проекты")}</a>
+    <h1>Central Asia GeoAI</h1>
+    <p class="lead">{txt("Can satellite observations help identify tailings facilities that need closer engineering attention?","Могут ли спутниковые наблюдения помочь находить хвостохранилища, которым требуется дополнительная инженерная проверка?")}</p>
+    <div class="project-meta"><span>GeoRisk / Tailings Monitoring</span><span>{txt("Research proposal","Исследовательский проект")}</span><span>{txt("Pilot: 3–5 facilities","Пилот: 3–5 объектов")}</span></div>
+  </div>
+  <div class="article-grid">
+    <nav class="toc" aria-label={txt("On this page","На этой странице")}>{sections.map(([id,label])=><a href={"#"+id}>{label}</a>)}<a href="https://github.com/KazakhstanAi/central-asia-geoai">{txt("Repository","Репозиторий")} ↗</a></nav>
+    <div class="article">
+      <section id="question">
+        <p class="eyebrow">01 / {txt("Research question","Постановка вопроса")}</p>
+        <h2>{txt("From surface movement to a reason to investigate.","От смещения поверхности — к основанию для проверки.")}</h2>
+        <p>{txt("Tailings facilities store waste from mineral processing. Understanding how their surfaces change can help direct inspections. Kazakhstan's published inventory research motivates a small, documented local study.","Хвостохранилища содержат отходы обогащения руды. Наблюдение за изменениями их поверхности может помогать планировать проверки. Исследование казахстанских реестров даёт основу для небольшой документированной локальной выборки.")} <a href="#ref-kazakhstan">[5]</a></p>
+        <div class="note"><p>{txt("My question: can temporal machine learning detect meaningful deformation changes more reliably than velocity thresholds and statistical change detection?","Мой вопрос: может ли машинное обучение временных рядов надёжнее выявлять значимые изменения деформации, чем пороги скорости и статистическое обнаружение изменений?")}</p></div>
+        <p>{txt("The planned platform shares a data catalogue, processing history, API and map across specialised modules. Tailings monitoring is the first module; water, agriculture and other layers remain future directions. No field results or trained model have been published by this project yet.","Планируемая платформа объединяет каталог данных, историю обработки, API и карту для специализированных модулей. Мониторинг хвостохранилищ — первый модуль; вода, сельское хозяйство и другие слои остаются дальнейшими направлениями. Собственных полевых результатов и обученной модели у проекта пока нет.")}</p>
+      </section>
+      <section id="method">
+        <p class="eyebrow">02 / {txt("Proposed method","Предлагаемый подход")}</p>
+        <h2>{txt("Measure first. Then compare models.","Сначала измерения. Затем сравнение моделей.")}</h2>
+        <p>{txt("InSAR uses phase differences between compatible radar acquisitions to estimate relative movement along the satellite's line of sight. The pilot needs Sentinel-1 SLC data, orbit information and terrain data. The reliability of the resulting history must be assessed before modelling.","InSAR использует разность фаз совместимых радарных съёмок для оценки относительного смещения вдоль линии визирования спутника. Для пилота нужны Sentinel-1 SLC, орбитальная информация и данные о рельефе. Надёжность полученной истории необходимо оценить до обучения моделей.")} <a href="#ref-sentinel">[6]</a> <a href="#ref-mintpy">[4]</a></p>
+        <div class="pipeline">{[
+          txt("SLC + orbit + DEM","SLC + орбиты + DEM"),txt("Interferograms and quality control","Интерферограммы и качество"),
+          txt("Displacement time series","Временные ряды смещений"),txt("Velocity, seasonality, context","Скорость, сезонность, контекст"),
+          txt("Baseline and anomaly models","Baseline и поиск аномалий"),txt("Map and engineering review","Карта и инженерная проверка")
+        ].map((step,i)=><div><span>0{i+1}</span><strong>{step}</strong></div>)}</div>
+        <div class="table-wrap"><table><thead><tr><th>{txt("Comparison","Сравнение")}</th><th>{txt("What it tests","Что проверяем")}</th></tr></thead><tbody>
+          <tr><td>{txt("Velocity / acceleration thresholds","Пороги скорости / ускорения")}</td><td>{txt("Whether a simple, interpretable rule is already sufficient.","Достаточно ли простого интерпретируемого правила.")}</td></tr>
+          <tr><td>{txt("Change detection / spectral statistics","Change detection / спектральная статистика")}</td><td>{txt("Whether a change in the temporal regime is more informative than an absolute rate.","Информативнее ли изменение режима, чем абсолютная скорость.")} <a href="#ref-spectral">[3]</a></td></tr>
+          <tr><td>Isolation Forest</td><td>{txt("A planned classical ML baseline on quality-controlled temporal features.","Планируемый классический ML baseline на временных признаках с контролем качества.")}</td></tr>
+          <tr><td>Autoencoder / TCN / LSTM</td><td>{txt("Whether learning temporal structure improves detection at the same false-alarm rate. One family will be selected after the data audit.","Улучшает ли обучение временной структуры обнаружение при той же частоте ложных тревог. Одно семейство выберем после аудита данных.")}</td></tr>
+        </tbody></table></div>
+        <p class="small muted">{txt("These are planned comparisons. The cited papers do not establish that Isolation Forest, an LSTM or a Transformer will be best for the selected Kazakhstan facilities.","Это планируемые сравнения. Приведённые статьи не доказывают, что Isolation Forest, LSTM или Transformer окажется лучшим на выбранных объектах Казахстана.")}</p>
+      </section>
+      <section id="evidence">
+        <p class="eyebrow">03 / {txt("Annotated reading list","Литература с комментариями")}</p>
+        <h2>{txt("What the evidence supports.","На что можно опереться.")}</h2>
+        <p>{txt("The literature supports the usefulness of satellite deformation monitoring. The central uncertainty is how reliably anomalies transfer across sites, seasons and processing choices. Below, each source has a specific role in the study.","Литература поддерживает полезность спутникового мониторинга деформаций. Главный открытый вопрос — насколько надёжно обнаружение аномалий переносится между объектами, сезонами и вариантами обработки. Ниже у каждого источника есть конкретная роль в исследовании.")}</p>
+        <p class="reading-date">{txt("Sources checked","Источники проверены")}: 19.09.2026</p>
+        {references.map((ref,i)=><article class="paper" id={"ref-"+ref.id}>
+          <div class="meta">[{i+1}] {ref.type[l]} · {ref.year}</div>
+          <h3 class="paper-title"><a href={ref.url}>{ref.title}</a></h3>
+          <p class="meta">{ref.authors} · {ref.venue}</p>
+          <p><strong>{txt("Finding. ","Результат. ")}</strong>{ref.finding[l]}</p>
+          <p><strong>{txt("Implication for this project. ","Значение для проекта. ")}</strong>{ref.meaning[l]}</p>
+          <div class="links"><a href={ref.url}>{txt("Original source","Первоисточник")} ↗</a>{"extra" in ref && <a href={ref.extra}>PDF ↗</a>}</div>
+        </article>)}
+      </section>
+      <section id="analogs">
+        <p class="eyebrow">04 / {txt("Existing approaches","Существующие решения")}</p>
+        <h2>{txt("There is already a practice to learn from.","Есть практика, на которую можно опереться.")}</h2>
+        <p>{txt("In December 2020, Glencore announced an agreement with TRE ALTAMIRA for monitoring more than 110 dams. This is evidence of industry adoption, not an independent measurement of prediction accuracy.","В декабре 2020 года Glencore сообщила о соглашении с TRE ALTAMIRA по мониторингу более 110 дамб. Это свидетельство применения в отрасли, а не независимое измерение точности прогноза.")} <a href="https://www.glencore.com/media-and-insights/news/glencore-enters-partnership-with-tre-altamira-to-expand-satellite-monitoring-across-its-tailings-storage-facilities">{txt("Company announcement","Сообщение компании")} ↗</a></p>
+        {analogs.map(a=><article class="paper"><div class="meta">{a.kind[l]}</div><h3><a href={a.url}>{a.name} ↗</a></h3><p>{a.desc[l]}</p><p class="muted">{a.lesson[l]}</p></article>)}
+        <div class="note"><p>{txt("The proposed contribution is a reproducible local study: a documented Kazakhstan cohort, explicit processing choices and a fair comparison of anomaly methods. There is no evidence yet that this project outperforms commercial services.","Предполагаемый вклад — воспроизводимое локальное исследование: документированная выборка Казахстана, явные параметры обработки и корректное сравнение методов поиска аномалий. Данных о превосходстве проекта над коммерческими сервисами пока нет.")}</p></div>
+      </section>
+      <section id="pilot">
+        <p class="eyebrow">05 / {txt("Planned experiment","Планируемый эксперимент")}</p>
+        <h2>{txt("A small pilot with a clear test.","Небольшой пилот с понятной проверкой.")}</h2>
+        <ul>
+          <li>{txt("Choose 3–5 facilities after checking geometry, acquisition history, coherence and access to independent observations.","Выбрать 3–5 объектов после проверки геометрии, истории съёмок, когерентности и доступности независимых наблюдений.")}</li>
+          <li>{txt("Fix training and evaluation windows before model selection. Keep neighbouring points and overlapping windows from leaking into the test set.","Зафиксировать интервалы обучения и оценки до выбора модели. Исключить утечки через соседние точки и перекрывающиеся окна.")}</li>
+          <li>{txt("Compare false alarms per facility-year, detection delay and event precision/recall where reliable labels exist. Also report coverage and abstention.","Сравнить число ложных тревог на объект в год, задержку обнаружения и precision/recall событий при надёжной разметке. Отдельно показать покрытие и долю отказов от оценки.")}</li>
+          <li>{txt("Test missing acquisitions, noise, seasonal variation and changes in preprocessing. Report results separately for each facility.","Проверить пропуски съёмок, шум, сезонность и изменения процессинга. Представить результаты отдельно по каждому объекту.")}</li>
+          <li>{txt("Use injected anomalies only as a controlled stress test when field labels are scarce; they cannot establish real-world failure detection.","При дефиците полевой разметки использовать искусственные аномалии только как контролируемый стресс-тест; они не доказывают обнаружение реальных аварий.")}</li>
+        </ul>
+        <h3>{txt("What should exist after the pilot","Что должно появиться после пилота")}</h3>
+        <p>{txt("A versioned dataset, an InSAR quality report, a comparison of baselines and a temporal model, and a map with displacement histories and processing provenance. The first four weeks focus on feasibility; the following eight depend on adequate observations and validation evidence.","Версионированный датасет, отчёт о качестве InSAR, сравнение baseline-методов и временной модели, карта с историей смещений и происхождением результатов. Первые четыре недели — проверка реализуемости; следующие восемь зависят от качества наблюдений и материала для валидации.")}</p>
+      </section>
+      <section id="limits">
+        <p class="eyebrow">06 / {txt("Limits and next steps","Ограничения и следующие шаги")}</p>
+        <h2>{txt("The difficult part is interpretation.","Сложнее всего — интерпретация.")}</h2>
+        <p>{txt("Low coherence, snow, vegetation, atmospheric effects and phase-unwrapping errors can obscure or imitate movement. Construction and normal consolidation can also change a deformation history. A score must be interpreted with this context.","Низкая когерентность, снег, растительность, атмосфера и ошибки развёртки фазы могут скрывать или имитировать смещения. Строительство и нормальная консолидация тоже меняют историю деформации. Оценка модели должна интерпретироваться с этим контекстом.")} <a href="#ref-review">[1]</a> <a href="#ref-cadia">[2]</a></p>
+        <p>{txt("The intended output is an indication for engineering review, with data quality and uncertainty. An anomaly score is not a probability of collapse or a predicted failure date. Ground observations and expert review remain necessary to evaluate the pilot.","Планируемый результат — основание для инженерной проверки с указанием качества данных и неопределённости. Anomaly score не равен вероятности обрушения или дате аварии. Для оценки пилота необходимы наземные наблюдения и экспертная проверка.")}</p>
+        <a class="text-link" href="https://github.com/KazakhstanAi/central-asia-geoai">{txt("Read the detailed research plan on GitHub","Подробный research plan на GitHub")} ↗</a>
+      </section>
+    </div>
+  </div>
+</div>
+</BaseLayout>
+
