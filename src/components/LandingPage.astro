@@ -22,7 +22,7 @@ const reading = [
     <div class="intro-kicker"><span class="eyebrow"><span class="square-mark"></span>{txt("Independent AI research", "Независимые AI-исследования")}</span><span class="eyebrow">{txt("Kazakhstan · Central Asia", "Казахстан · Центральная Азия")}</span></div>
     <div class="intro-grid">
       <h1>{txt("A closer look.\nA clearer understanding.", "Разбираться глубже.\nСоздавать полезное.")}</h1>
-      <div class="intro-copy"><p>{txt("I explore how AI can help us read a changing landscape and understand the languages we speak.", "Я исследую, как AI помогает замечать изменения ландшафта и понимать речь, на которой мы общаемся.")}</p><div class="intro-actions"><a class="button button-accent" href={voiceApp}>{txt("Open VAIS Voice benchmark", "Открыть VAIS Voice Benchmark")} <span aria-hidden="true">↗</span></a><a class="text-link" href="#projects">{txt("Explore the research", "Исследовательские проекты")} <span aria-hidden="true">↘</span></a></div></div>
+      <div class="intro-copy"><p>{txt("I explore AI through satellite observation, speech authenticity and enterprise evaluation — with local context and reproducible evidence.", "Я исследую AI в спутниковых наблюдениях, подлинности речи и оценке корпоративных систем — с опорой на локальный контекст и воспроизводимые результаты.")}</p><div class="intro-actions"><a class="button button-accent" href="#projects">{txt("Explore three projects", "Три исследовательских проекта")} <span aria-hidden="true">↗</span></a><a class="text-link" href="#reading">{txt("Research and methods", "Исследования и методы")} <span aria-hidden="true">↘</span></a></div></div>
     </div>
   </section>
 
@@ -45,14 +45,14 @@ const reading = [
         <div class="card-meta"><span>{txt("Earth observation", "Спутниковые наблюдения")}</span><span class="status">{txt("Pilot planned", "Планируется пилот")}</span></div>
         <h3><a href={geo}>Central Asia GeoAI</a></h3>
         <p>{txt("Can deformation time series help identify facilities that need engineering attention? First, a feasibility study on 3–5 sites in Kazakhstan.", "Могут ли временные ряды деформаций выявлять объекты, которым нужна инженерная проверка? Первый шаг — оценка реализуемости на 3–5 объектах Казахстана.")}</p>
-        <a class="text-link" href={geo}>{txt("Methods, literature and pilot", "Методы, литература и пилот")} ↗</a>
+        <div class="project-links"><a class="text-link" href={geo}>{txt("About the project", "О проекте")} ↗</a><span class="app-planned">{txt("Application planned", "Приложение планируется")}</span></div>
       </article>
       <article class="research-card speech-card">
-        <a class="card-art" href={voiceApp} aria-label={txt("Open VAIS Voice benchmark", "Открыть VAIS Voice Benchmark")}><ResearchArtwork kind="speech" /><span class="art-label">02 / AUDIO AUTHENTICITY</span><span class="circle-arrow" aria-hidden="true">↗</span></a>
+        <a class="card-art" href={voice} aria-label={txt("Explore VAIS Voice", "Подробнее о VAIS Voice")}><ResearchArtwork kind="speech" /><span class="art-label">02 / AUDIO AUTHENTICITY</span><span class="circle-arrow" aria-hidden="true">↗</span></a>
         <div class="card-meta"><span>Synthetic speech detection</span><span class="status">Research → Product MVP</span></div>
-        <h3><a href={voiceApp}>VAIS Voice</a></h3>
-        <p>{txt("Synthetic speech detection for Kazakh, Russian and mixed speech. Research on unseen generators and real audio channels. Planned MVP: upload a short recording and inspect its synthetic score, quality and calibration status.", "Обнаружение синтетической речи на казахском, русском и в смешанной речи. Исследование новых генераторов и реальных аудиоканалов. Планируемый MVP: загрузить короткую запись и получить synthetic score, качество сигнала и статус калибровки.")}</p>
-        <a class="text-link" href={voiceApp}>{txt("Open the live benchmark", "Открыть live benchmark")} ↗</a>
+        <h3><a href={voice}>VAIS Voice</a></h3>
+        <p>{txt("Synthetic speech detection for Kazakh, Russian and mixed speech. Research on unseen generators and real audio channels. Explore the benchmark, detector lab and published evidence in the research application.", "Обнаружение синтетической речи на казахском, русском и в смешанной речи. Исследование новых генераторов и реальных аудиоканалов. Бенчмарк, лаборатория детектора и опубликованные результаты доступны в исследовательском приложении.")}</p>
+        <div class="project-links"><a class="text-link" href={voice}>{txt("About the project", "О проекте")} ↗</a><a class="text-link" href={voiceApp}>{txt("Open benchmark", "Открыть бенчмарк")} ↗</a></div>
       </article>
       <article class="research-card enterprise-card">
         <a class="card-art" href={enterprise} aria-label={txt("Explore VAIS Enterprise", "Подробнее о VAIS Enterprise")}><ResearchArtwork kind="enterprise" /><span class="art-label">03 / ENTERPRISE AI EVALUATION</span><span class="circle-arrow" aria-hidden="true">↗</span></a>
@@ -67,16 +67,23 @@ const reading = [
 
   <section class="reading-section" id="reading">
     <div class="wrap section-space">
-      <div class="section-heading"><div><p class="eyebrow">{txt("The research behind the research", "Научная основа")}</p><h2>{txt("Start with the evidence.", "Начинать с доказательств.")}</h2></div><div class="source-links"><a class="text-link" href={geo+"#evidence"}>GeoAI ↗</a><a class="text-link" href={voice+"#evidence"}>VAIS Voice ↗</a></div></div>
+      <div class="section-heading"><div><p class="eyebrow">{txt("The research behind the research", "Научная основа")}</p><h2>{txt("Start with the evidence.", "Начинать с доказательств.")}</h2></div><div class="source-links"><a class="text-link" href={geo+"#evidence"}>GeoAI ↗</a><a class="text-link" href={voice+"#evidence"}>VAIS Voice ↗</a><a class="text-link" href={enterprise+"#evidence"}>VAIS Enterprise ↗</a></div></div>
       <div class="reading-grid">{reading.map((ref,i)=><a class="reading-card" href={ref.page+"#ref-"+ref.id}><div class="reading-top"><span>0{i+1} / {ref.project} / {ref.year}</span><span aria-hidden="true">↗</span></div><span class="reading-type">{ref.type[ru ? 1 : 0]}</span><h3>{ref.title}</h3><p>{ref.authors}</p><span class="reading-venue">{ref.venue}</span></a>)}</div>
-      <p class="illustration-note">{txt("Selected external publications, not papers authored by Vais Research. Annotations distinguish established findings from open questions.", "Избранные внешние публикации, не собственные работы Vais Research. В комментариях отделяю выводы авторов от открытых вопросов проекта.")}</p>
+      <div class="enterprise-reading reading-grid">
+        {[
+          [txt("Published evaluation protocol", "Протокол оценки"), txt("How the demo evaluates answers and citations, and where its limits are.", "Как демонабор оценивает ответы и цитаты и какие ограничения есть у метода."), "#method"],
+          [txt("KZ/RU demo dataset", "Демонстрационный KZ/RU-набор"), txt("Twelve synthetic cases, version conflicts and cross-language evidence.", "Двенадцать синтетических кейсов, конфликты версий и межъязыковые доказательства."), "#evidence"],
+          [txt("Reproducible snapshots", "Воспроизводимые снимки"), txt("Benchmark versions, source hashes and per-case results.", "Версии бенчмарка, хеши источников и результаты по каждому кейсу."), "#reproducibility"]
+        ].map(([title, description, anchor], i) => <a class="reading-card" href={enterprise + anchor}><div class="reading-top"><span>0{i+7} / VAIS Enterprise / v0.1</span><span aria-hidden="true">↗</span></div><span class="reading-type">{txt("Project methodology", "Методология проекта")}</span><h3>{title}</h3><p>{description}</p><span class="reading-venue">VAIS Enterprise</span></a>)}
+      </div>
+      <p class="illustration-note">{txt("GeoAI and Voice cards link to external publications. Enterprise cards describe our demo protocol and dataset. Project documentation is labelled separately from research papers.", "Карточки GeoAI и Voice ведут к внешним публикациям. Карточки Enterprise описывают наш демопротокол и набор данных. Документация проекта обозначена отдельно от научных статей.")}</p>
     </div>
   </section>
 
   <section class="about-section" id="about">
     <div class="wrap about-grid">
       <div><p class="eyebrow">{txt("About Vais Research", "О Vais Research")}</p><h2>{txt("Built on curiosity.\nGrounded in context.", "Из любопытства.\nС опорой на контекст.")}</h2><a class="button button-light" href="https://github.com/MataVsn">{txt("My GitHub", "Мой GitHub")} ↗</a></div>
-      <div class="about-copy"><p>{txt("Vais Research is my personal research portfolio. I am interested in problems where the specifics matter: the seasonality of satellite observations, facilities in Kazakhstan and mixed Kazakh–Russian speech.", "Vais Research — моё личное исследовательское портфолио. Мне интересны задачи, где важны детали: сезонность спутниковых наблюдений, особенности объектов Казахстана и смешанная казахско-русская речь.")}</p><p>{txt("I start with small experiments and clear comparisons. This is where I will share the methods, results and lessons — including when a simpler model works better.", "Начинаю с небольших экспериментов и понятных сравнений. Здесь будут появляться методы, результаты и выводы — в том числе когда простая модель окажется лучше сложной.")}</p><div class="about-principles"><span>{txt("Local context", "Локальный контекст")}</span><span>{txt("Reproducibility", "Воспроизводимость")}</span><span>{txt("Honest evaluation", "Честная оценка")}</span></div></div>
+      <div class="about-copy"><p>{txt("Vais Research is my personal research portfolio. I am interested in problems where the specifics matter: the seasonality of satellite observations, facilities in Kazakhstan, mixed Kazakh–Russian speech and the evidence behind enterprise AI answers.", "Vais Research — моё личное исследовательское портфолио. Мне интересны задачи, где важны детали: сезонность спутниковых наблюдений, особенности объектов Казахстана, смешанная казахско-русская речь и доказательства в ответах корпоративного AI.")}</p><p>{txt("I start with small experiments and clear comparisons. This is where I will share the methods, results and lessons — including when a simpler model works better.", "Начинаю с небольших экспериментов и понятных сравнений. Здесь будут появляться методы, результаты и выводы — в том числе когда простая модель окажется лучше сложной.")}</p><div class="about-principles"><span>{txt("Local context", "Локальный контекст")}</span><span>{txt("Reproducibility", "Воспроизводимость")}</span><span>{txt("Honest evaluation", "Честная оценка")}</span></div></div>
     </div>
   </section>
 </BaseLayout>

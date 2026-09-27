@@ -26,11 +26,11 @@ const waves = Array.from({length: 96}, (_, i) => {
     </g>
     <path d="M40 510H130M40 505V515M130 505V515" stroke="#482e28" stroke-width="2" />
   </> : kind === "speech" ? <>
-    <rect width="700" height="560" fill="#d8dce8" />
-    <g stroke="#9ca6bd" stroke-width="1">{[100,190,280,370,460].map(y=><path d={`M0 ${y}H700`} />)}</g>
-    <g stroke="#414f79" stroke-width="3.5">{waves.map(w=><path d={`M${w.x} ${280-w.height}V${280+w.height}`} />)}</g>
+    <rect width="700" height="560" fill="#d9eae4" />
+    <g stroke="#a3c2b7" stroke-width="1">{[100,190,280,370,460].map(y=><path d={`M0 ${y}H700`} />)}</g>
+    <g stroke="#087e70" stroke-width="3.5">{waves.map(w=><path d={`M${w.x} ${280-w.height}V${280+w.height}`} />)}</g>
     <path d="M350 65V495" stroke="#f6f4ed" stroke-width="2" stroke-dasharray="6 6" />
-    <g fill="#414f79" font-family="Arial,sans-serif" font-size="18"><text x="40" y="58">ҚАЗ</text><text x="607" y="518">РУС</text></g>
+    <g fill="#087e70" font-family="Arial,sans-serif" font-size="18"><text x="40" y="58">ҚАЗ</text><text x="607" y="518">РУС</text></g>
   </> : <>
     <rect width="700" height="560" fill="#e0d9eb" />
     <g stroke="#b9adc9" stroke-width="1" opacity=".65">

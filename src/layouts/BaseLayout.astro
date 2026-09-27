@@ -1,11 +1,15 @@
 ---
 import "../styles/global.css";
+import "../styles/projects.css";
+import ProjectNav from "../components/ProjectNav.astro";
+import { projects } from "../data/projects";
 interface Props { lang: "en" | "ru"; title: string; description: string; canonicalPath: string; }
 const { lang, title, description, canonicalPath } = Astro.props;
 const ru = lang === "ru";
 const home = ru ? "/ru" : "/";
 const alternatePath = ru ? canonicalPath.replace(/^\/ru/, "") || "/" : "/ru" + (canonicalPath === "/" ? "" : canonicalPath);
 const origin = Astro.site;
+const theme = projects.find(project => canonicalPath.endsWith(project.path))?.id ?? "portfolio";
 ---
 <!doctype html>
 <html lang={lang}>
@@ -22,7 +26,7 @@ const origin = Astro.site;
   <meta property="og:site_name" content="Vais Research" />
   <title>{title}</title>
 </head>
-<body>
+<body data-project={theme}>
   <a class="skip" href="#main">{ru ? "К содержанию" : "Skip to content"}</a>
   <header class="header wrap">
     <a href={home} class="brand"><svg viewBox="0 0 32 32" width="30" height="30" fill="none" aria-hidden="true"><path d="M3 6L14 27H18L29 6H24L16 21L8 6Z" fill="currentColor"/><path d="M14 6H19L16.5 11Z" fill="#bb593e"/></svg><span>Vais Research</span></a>
@@ -34,7 +38,12 @@ const origin = Astro.site;
       <a href={alternatePath} lang={ru ? "en" : "ru"} hreflang={ru ? "en" : "ru"} class="lang">{ru ? "EN" : "RU"}</a>
     </nav>
   </header>
+  <ProjectNav lang={lang} path={canonicalPath} />
   <main id="main"><slot /></main>
-  <footer class="footer wrap"><a class="footer-brand" href={home}>Vais Research</a><span>© 2026 · {ru ? "Личное исследовательское портфолио" : "Independent research portfolio"}</span><a href={home + "#projects"}>{ru ? "К исследованиям" : "Explore the research"} ↗</a></footer>
+  <footer class="footer wrap">
+    <div><a class="footer-brand" href={home}>Vais Research</a><p>© 2026 · {ru ? "Исследовательское портфолио VAIS Labs" : "The VAIS Labs research portfolio"}</p></div>
+    <nav aria-label={ru ? "Все проекты" : "All projects"}>{projects.map(project => <a href={(ru ? "/ru" : "") + project.path}>{project.name}</a>)}</nav>
+    <nav aria-label={ru ? "Приложения" : "Applications"}>{projects.filter(project => project.app).map(project => <a href={project.app!}>{project.name} ↗</a>)}</nav>
+  </footer>
 </body>
 </html>

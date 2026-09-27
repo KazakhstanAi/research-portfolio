@@ -5,7 +5,7 @@ Personal, bilingual research portfolio. A research-lab-inspired editorial layout
 - [Central Asia GeoAI](https://github.com/KazakhstanAi/central-asia-geoai): a shared geospatial platform, starting with GeoRisk tailings monitoring using InSAR time series and anomaly screening.
 - [VAIS Voice](https://github.com/KazakhstanAi/kazakh-russian-speech-intelligence): synthetic speech authenticity for Kazakh–Russian environments. Planned MVP: audio upload → detector → score with quality/calibration information. A protected KZ/RU benchmark validates the detector; it is R&D infrastructure, not a separate product. Historical repository URL retained.
 
-GeoAI has a dedicated research page with six annotated primary sources, three comparable systems and a conditional pilot plan. VAIS Voice has a bilingual page with six relevant sources, an audio-processing pipeline, detection metrics and a roadmap. Both are research-stage projects. The voice report preview is explicitly static: its 0.87 score is illustrative, its model name is proposed and its upload/analysis controls are disabled. No detector or inference service is claimed to be available.
+GeoAI has a dedicated research page with six annotated primary sources, three comparable systems and a conditional pilot plan. VAIS Voice has a bilingual page with six relevant sources, an audio-processing pipeline, detection metrics and a roadmap. The research pages retain their methodology and planned experiments. The voice report mockup is explicitly illustrative; the live Voice application is the source for current benchmark and detector availability. Enterprise has a published synthetic demo protocol.
 
 ## Stack and routes
 
@@ -37,7 +37,10 @@ npm run preview
 
 ## Content
 
-- `src/components/LandingPage.astro`: bilingual introduction and project summaries.
+- `src/components/LandingPage.astro`: bilingual introduction, three project cards and research materials.
+- `src/data/projects.ts`, `src/components/ProjectNav.astro`: shared project links and identities on every portfolio page.
+- `src/styles/projects.css`: orange GeoAI, green Voice and purple Enterprise themes.
+- `src/components/EnterprisePage.astro`: Enterprise overview, protocol, dataset and reproducibility sections.
 - `src/components/GeoProject.astro`: bilingual research proposal and evaluation plan.
 - `src/components/VoiceProject.astro`: bilingual detector concept, static report mockup, evaluation protocol and limitations.
 - `src/data/voice-references.ts`: six annotated detection/generalization, regional-speech and quality-control sources. Agent-testing literature is outside the current scope.

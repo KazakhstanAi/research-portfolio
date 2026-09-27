@@ -1,0 +1,10 @@
+---
+import { projects } from "../data/projects";
+interface Props { lang: "en" | "ru"; path: string; }
+const { lang, path } = Astro.props;
+const prefix = lang === "ru" ? "/ru" : "";
+---
+<nav class="project-nav wrap" aria-label={lang === "ru" ? "Исследовательские проекты" : "Research projects"}>
+  <span>{lang === "ru" ? "VAIS Labs / Проекты" : "VAIS Labs / Projects"}</span>
+  {projects.map(project => <a href={prefix + project.path} style={`--project-color:${project.color}`} aria-current={path === prefix + project.path ? "page" : undefined}><i aria-hidden="true"></i>{project.name}</a>)}
+</nav>
