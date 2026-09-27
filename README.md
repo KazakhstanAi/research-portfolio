@@ -1,6 +1,6 @@
 # Vais Research
 
-Personal, bilingual research portfolio. A research-lab-inspired editorial layout combines large typography, a featured project, original terrain and speech illustrations, and a curated reading section. It introduces two independent projects without presenting planned research as an operational product.
+Personal, bilingual research portfolio. A research-lab-inspired editorial layout combines large typography, a featured project, original terrain, speech and evidence illustrations, and a curated reading section. The homepage introduces three independent projects with their current status.
 
 - [Central Asia GeoAI](https://github.com/KazakhstanAi/central-asia-geoai): a shared geospatial platform, starting with GeoRisk tailings monitoring using InSAR time series and anomaly screening.
 - [VAIS Voice](https://github.com/KazakhstanAi/kazakh-russian-speech-intelligence): synthetic speech authenticity for Kazakh–Russian environments. Planned MVP: audio upload → detector → score with quality/calibration information. A protected KZ/RU benchmark validates the detector; it is R&D infrastructure, not a separate product. Historical repository URL retained.
@@ -9,6 +9,8 @@ GeoAI has a dedicated research page with six annotated primary sources, three co
 
 ## Stack and routes
 
+VAIS Enterprise is the third homepage project, linking to its bilingual overview and the demo benchmark at `https://enterprise.vaislabs.com`.
+
 Astro 7, TypeScript, static HTML, custom responsive CSS, system fonts. Navigation and content work without client-side JavaScript.
 
 | Page | English | Russian |
@@ -16,6 +18,7 @@ Astro 7, TypeScript, static HTML, custom responsive CSS, system fonts. Navigatio
 | Portfolio | `/` | `/ru` |
 | GeoAI research | `/projects/geoai` | `/ru/projects/geoai` |
 | VAIS Voice | `/projects/voice` | `/ru/projects/voice` |
+| VAIS Enterprise | `/enterprise` | `/ru/enterprise` |
 
 ## Development
 
@@ -52,6 +55,16 @@ Design references: [Anthropic](https://www.anthropic.com/) and [OpenAI Research]
 `npm run build` writes the static site to `dist/`. The production origin is `https://vaislabs.com`, used for canonical and alternate-language metadata. The Astro configuration defaults to this origin; a build environment can explicitly set `SITE_URL=https://vaislabs.com` or override it for another deployment. This setting does not configure hosting or DNS.
 
 The existing GitHub organization and repository URLs are unchanged by the Vais Research branding. CI checks types and builds the site; it does not deploy it.
+
+The production host is the existing Cloudflare Worker `research-portfolio`.
+`wrangler.jsonc` records its custom domain and static asset configuration.
+With an authenticated Cloudflare session, publish the checked build using:
+
+```sh
+npm run check
+npm run build
+npx wrangler@4.136.3 deploy
+```
 
 ## License
 

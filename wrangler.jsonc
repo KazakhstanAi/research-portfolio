@@ -1,0 +1,14 @@
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "research-portfolio",
+  "account_id": "d6c4322f83f8e7214b7b53e382e997a7",
+  "compatibility_date": "2026-09-25",
+  "compatibility_flags": ["global_fetch_strictly_public"],
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "routes": [{ "pattern": "vaislabs.com", "custom_domain": true }],
+  "observability": { "enabled": true }
+}

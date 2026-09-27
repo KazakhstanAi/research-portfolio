@@ -1,5 +1,5 @@
 ---
-interface Props { kind?: "terrain" | "speech"; }
+interface Props { kind?: "terrain" | "speech" | "enterprise"; }
 const { kind = "terrain" } = Astro.props;
 // Original editorial illustrations, not satellite observations or recorded audio.
 const contours = Array.from({length: 48}, (_, i) => {
@@ -25,11 +25,33 @@ const waves = Array.from({length: 96}, (_, i) => {
       <circle cx="350" cy="290" r="8" />
     </g>
     <path d="M40 510H130M40 505V515M130 505V515" stroke="#482e28" stroke-width="2" />
-  </> : <>
+  </> : kind === "speech" ? <>
     <rect width="700" height="560" fill="#d8dce8" />
     <g stroke="#9ca6bd" stroke-width="1">{[100,190,280,370,460].map(y=><path d={`M0 ${y}H700`} />)}</g>
     <g stroke="#414f79" stroke-width="3.5">{waves.map(w=><path d={`M${w.x} ${280-w.height}V${280+w.height}`} />)}</g>
     <path d="M350 65V495" stroke="#f6f4ed" stroke-width="2" stroke-dasharray="6 6" />
     <g fill="#414f79" font-family="Arial,sans-serif" font-size="18"><text x="40" y="58">ҚАЗ</text><text x="607" y="518">РУС</text></g>
+  </> : <>
+    <rect width="700" height="560" fill="#e0d9eb" />
+    <g stroke="#b9adc9" stroke-width="1" opacity=".65">
+      {[100,190,280,370,460].map(y => <path d={`M0 ${y}H700`} />)}
+      {[105,245,385,525,665].map(x => <path d={`M${x} 0V560`} />)}
+    </g>
+    <g stroke="#6b548b" stroke-width="2" fill="#f0ebf5">
+      <rect x="74" y="144" width="146" height="184" rx="5" />
+      <rect x="98" y="166" width="146" height="184" rx="5" />
+      <rect x="442" y="211" width="170" height="176" rx="5" />
+    </g>
+    <g stroke="#8b77a5" stroke-width="3">
+      <path d="M124 201H178M124 233H218M124 255H201M124 277H211M124 313H176" />
+      <path d="M470 242H538M470 274H584M470 296H570M470 318H584M470 353H522" />
+    </g>
+    <g stroke="#6b548b" stroke-width="2" fill="none">
+      <path d="M244 248H303L348 280L395 300H442M244 313H286L348 280" />
+      <circle cx="348" cy="280" r="22" fill="#e0d9eb" />
+      <path d="M337 280L345 288L360 272" />
+      <path d="M348 166V237M348 324V416" stroke-dasharray="4 8" />
+    </g>
+    <g fill="#6b548b"><circle cx="244" cy="248" r="4"/><circle cx="244" cy="313" r="4"/><circle cx="442" cy="300" r="4"/></g>
   </>}
 </svg>

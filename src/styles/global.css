@@ -60,7 +60,8 @@ nav a { text-decoration: none; }
 .section-heading .eyebrow { color: var(--muted); margin-bottom: 18px; }
 .section-heading > p { max-width: 355px; margin: 0 0 4px; font-size: 15px; color: var(--muted); }
 .section-heading > .text-link { flex-shrink: 0; }
-.project-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.project-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px; }
+.project-links { display: flex; flex-wrap: wrap; gap: 10px 20px; }
 .card-art { display: block; position: relative; height: 260px; overflow: hidden; border-radius: 5px; }
 .card-art .research-art { transition: transform .45s ease; }
 a.card-art:hover .research-art { transform: scale(1.035); }
@@ -68,6 +69,7 @@ a.card-art:hover .research-art { transform: scale(1.035); }
 .card-art .speech { object-position: center; }
 .art-label { position: absolute; top: 20px; left: 22px; font-size: 10px; letter-spacing: .09em; color: #311e18; }
 .speech-card .art-label { color: #303c5a; }
+.enterprise-card .art-label { color: #503a70; }
 .circle-arrow { position: absolute; bottom: 20px; right: 20px; width: 38px; height: 38px; display: grid; place-items: center; background: var(--bg); color: var(--fg); border-radius: 50%; font-size: 21px; }
 .card-meta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin: 23px 0 15px; font-size: 11px; color: var(--muted); }
 .status { display: inline-block; border: 1px solid var(--line); border-radius: 30px; padding: 4px 10px; font-size: 10px; color: var(--fg); }
@@ -174,6 +176,7 @@ td:first-child { min-width: 125px; }
   .about-grid { gap: 45px; }
 }
 @media (max-width: 800px) {
+  .project-cards { grid-template-columns: 1fr; gap: 38px; }
   .wrap { width: calc(100% - 40px); }
   .header { flex-wrap: wrap; gap: 20px; }
   .header nav { gap: 19px; font-size: 13px; }

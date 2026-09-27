@@ -10,12 +10,14 @@ const txt = (en: string, russian: string) => ru ? russian : en;
 const geo = (ru ? "/ru" : "") + "/projects/geoai";
 const voice = (ru ? "/ru" : "") + "/projects/voice";
 const voiceApp = "https://voice.vaislabs.com";
+const enterprise = (ru ? "/ru" : "") + "/enterprise";
+const enterpriseApp = "https://enterprise.vaislabs.com";
 const reading = [
   ...[references[0], references[1], references[3]].map(ref => ({...ref, project: "GeoAI", page: geo})),
   ...[voiceReferences[0], voiceReferences[2], voiceReferences[4]].map(ref => ({...ref, project: "VAIS Voice", page: voice}))
 ];
 ---
-<BaseLayout lang={locale} canonicalPath={ru ? "/ru" : "/"} title={txt("Vais Research — independent AI research", "Vais Research — независимые AI-исследования")} description={txt("Central Asia GeoAI and VAIS Voice: independent research in satellite monitoring and synthetic speech detection for Kazakh–Russian environments.", "Central Asia GeoAI и VAIS Voice: спутниковый мониторинг и обнаружение синтетической речи в казахско-русской среде.")}>
+<BaseLayout lang={locale} canonicalPath={ru ? "/ru" : "/"} title={txt("Vais Research — independent AI research", "Vais Research — независимые AI-исследования")} description={txt("Central Asia GeoAI, VAIS Voice and VAIS Enterprise: satellite monitoring, synthetic speech detection and KZ/RU enterprise AI evaluation.", "Central Asia GeoAI, VAIS Voice и VAIS Enterprise: спутниковый мониторинг, обнаружение синтетической речи и оценка корпоративного AI в KZ/RU-среде.")}>
   <section class="lab-intro wrap">
     <div class="intro-kicker"><span class="eyebrow"><span class="square-mark"></span>{txt("Independent AI research", "Независимые AI-исследования")}</span><span class="eyebrow">{txt("Kazakhstan · Central Asia", "Казахстан · Центральная Азия")}</span></div>
     <div class="intro-grid">
@@ -36,7 +38,7 @@ const reading = [
   </section>
 
   <section class="projects wrap section-space" id="projects">
-    <div class="section-heading"><div><p class="eyebrow">{txt("Research directions", "Направления исследований")}</p><h2>{txt("Two questions.\nA shared curiosity.", "Два направления.\nОдин интерес к сложному.")}</h2></div><p>{txt("Independent projects connected by a focus on local data, testable methods and real-world limitations.", "Самостоятельные проекты с общим подходом: локальные данные, проверяемые методы и внимание к ограничениям.")}</p></div>
+    <div class="section-heading"><div><p class="eyebrow">{txt("Research directions", "Направления исследований")}</p><h2>{txt("Three questions.\nA shared curiosity.", "Три направления.\nОдин интерес к сложному.")}</h2></div><p>{txt("Independent projects connected by a focus on local data, testable methods and real-world limitations.", "Самостоятельные проекты с общим подходом: локальные данные, проверяемые методы и внимание к ограничениям.")}</p></div>
     <div class="project-cards">
       <article class="research-card geo-card">
         <a class="card-art" href={geo} aria-label={txt("Explore Central Asia GeoAI", "Открыть Central Asia GeoAI")}><ResearchArtwork /><span class="art-label">01 / EARTH INTELLIGENCE</span><span class="circle-arrow" aria-hidden="true">↗</span></a>
@@ -52,8 +54,15 @@ const reading = [
         <p>{txt("Synthetic speech detection for Kazakh, Russian and mixed speech. Research on unseen generators and real audio channels. Planned MVP: upload a short recording and inspect its synthetic score, quality and calibration status.", "Обнаружение синтетической речи на казахском, русском и в смешанной речи. Исследование новых генераторов и реальных аудиоканалов. Планируемый MVP: загрузить короткую запись и получить synthetic score, качество сигнала и статус калибровки.")}</p>
         <a class="text-link" href={voiceApp}>{txt("Open the live benchmark", "Открыть live benchmark")} ↗</a>
       </article>
+      <article class="research-card enterprise-card">
+        <a class="card-art" href={enterprise} aria-label={txt("Explore VAIS Enterprise", "Подробнее о VAIS Enterprise")}><ResearchArtwork kind="enterprise" /><span class="art-label">03 / ENTERPRISE AI EVALUATION</span><span class="circle-arrow" aria-hidden="true">↗</span></a>
+        <div class="card-meta"><span>{txt("KZ/RU RAG & agent evaluation", "Оценка KZ/RU RAG и агентов")}</span><span class="status">{txt("Benchmark MVP", "MVP бенчмарка")}</span></div>
+        <h3><a href={enterprise}>VAIS Enterprise</a></h3>
+        <p>{txt("Evaluate enterprise AI before it reaches production. Reproducible KZ/RU benchmarks for RAG, copilots and AI agents, with citation checks, versioned evidence and run comparison. Explore the synthetic demo dataset.", "Оценивайте корпоративный AI до выхода в продакшен. Воспроизводимые KZ/RU-бенчмарки для RAG, копилотов и AI-агентов: проверка цитат, версии источников и сравнение запусков. Начните с синтетического демонабора.")}</p>
+        <div class="project-links"><a class="text-link" href={enterprise}>{txt("About the project", "О проекте")} ↗</a><a class="text-link" href={enterpriseApp}>{txt("Open benchmark", "Открыть бенчмарк")} ↗</a></div>
+      </article>
     </div>
-    <p class="illustration-note">{txt("Graphics are conceptual illustrations, not satellite measurements or audio recordings. Both projects are at the research stage.", "Графика — концептуальные иллюстрации, не спутниковые измерения и не записи речи. Оба проекта на исследовательской стадии.")}</p>
+    <p class="illustration-note">{txt("Graphics are conceptual illustrations, not satellite measurements, audio recordings or benchmark results. Project status is shown on each card.", "Графика — концептуальные иллюстрации, не спутниковые измерения, записи речи или результаты бенчмарка. Статус указан в каждой карточке.")}</p>
   </section>
 
   <section class="reading-section" id="reading">
