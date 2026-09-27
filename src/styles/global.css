@@ -37,6 +37,9 @@ nav a { text-decoration: none; }
 .intro-grid { display: grid; grid-template-columns: 1.7fr 1fr; align-items: end; gap: 65px; }
 .intro-copy { max-width: 360px; margin-left: auto; padding-bottom: 6px; }
 .intro-copy p { font-size: 18px; line-height: 1.55; }
+.intro-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 16px 20px; }
+.button-accent { background: var(--fg); color: var(--bg); }
+.button-accent:hover { color: #fff; background: var(--accent); }
 .text-link { font-size: 14px; line-height: 1.6; display: inline-block; }
 .text-link span { margin-left: 13px; }
 .featured { display: grid; grid-template-columns: 1fr 1.08fr; border-radius: 8px; overflow: hidden; background: #292d28; color: #f5f3ec; }

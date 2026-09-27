@@ -9,6 +9,7 @@ const ru = locale === "ru";
 const txt = (en: string, russian: string) => ru ? russian : en;
 const geo = (ru ? "/ru" : "") + "/projects/geoai";
 const voice = (ru ? "/ru" : "") + "/projects/voice";
+const voiceApp = "https://voice.vaislabs.com";
 const reading = [
   ...[references[0], references[1], references[3]].map(ref => ({...ref, project: "GeoAI", page: geo})),
   ...[voiceReferences[0], voiceReferences[2], voiceReferences[4]].map(ref => ({...ref, project: "VAIS Voice", page: voice}))
@@ -19,7 +20,7 @@ const reading = [
     <div class="intro-kicker"><span class="eyebrow"><span class="square-mark"></span>{txt("Independent AI research", "Независимые AI-исследования")}</span><span class="eyebrow">{txt("Kazakhstan · Central Asia", "Казахстан · Центральная Азия")}</span></div>
     <div class="intro-grid">
       <h1>{txt("A closer look.\nA clearer understanding.", "Разбираться глубже.\nСоздавать полезное.")}</h1>
-      <div class="intro-copy"><p>{txt("I explore how AI can help us read a changing landscape and understand the languages we speak.", "Я исследую, как AI помогает замечать изменения ландшафта и понимать речь, на которой мы общаемся.")}</p><a class="text-link" href="#projects">{txt("Explore the research", "Исследовательские проекты")} <span aria-hidden="true">↘</span></a></div>
+      <div class="intro-copy"><p>{txt("I explore how AI can help us read a changing landscape and understand the languages we speak.", "Я исследую, как AI помогает замечать изменения ландшафта и понимать речь, на которой мы общаемся.")}</p><div class="intro-actions"><a class="button button-accent" href={voiceApp}>{txt("Open VAIS Voice benchmark", "Открыть VAIS Voice Benchmark")} <span aria-hidden="true">↗</span></a><a class="text-link" href="#projects">{txt("Explore the research", "Исследовательские проекты")} <span aria-hidden="true">↘</span></a></div></div>
     </div>
   </section>
 
