@@ -1,6 +1,27 @@
 /* Project identity shared by the portfolio cards, research pages and navigation. */
+[data-project="multimodal"], .multimodal-card { --accent: #315c86; --project-soft: #dde7ee; }
+[data-project="human-ai"], .human-ai-card { --accent: #805329; --project-soft: #eee1cb; }
+.multimodal-card .art-label { color: #244763; }
+.human-ai-card .art-label { color: #65421f; }
+.direction-cover .research-art { transform: none; }
+.research-programs { padding-top: 0; }
+.research-programs .project-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.research-programs .research-card { padding-top: 32px; }
+.program-reading { margin-top: 18px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.program-reading .reading-card { border-top: 3px solid #315c86; }
+.program-reading .reading-card:nth-child(n+3) { border-color: #805329; }
+.program-reading .reading-type { color: #315c86; }
+[data-project="multimodal"] .note, [data-project="human-ai"] .note { background: var(--project-soft); }
+@media (min-width: 1000px) {
+  .direction-cover .research-art { transform: translateY(-50%); }
+}
+@media (max-width: 800px) {
+  .research-programs .project-cards { grid-template-columns: 1fr; }
+  .program-reading { grid-template-columns: 1fr; }
+  .direction-cover .research-art { transform: none; }
+}
 [data-project="geoai"], .geo-card { --accent: #a34630; --project-soft: #f3e2d7; }
-[data-project="voice"], .speech-card { --accent: #087e70; --project-soft: #e2f1eb; }
+[data-project="voice"], .speech-card { --accent: #076d61; --project-soft: #e2f1eb; }
 [data-project="enterprise"], .enterprise-card { --accent: #7050b5; --project-soft: #eee8f7; }
 .project-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; padding-block: 14px; border-block: 1px solid var(--line); font-size: 12px; }
 .project-nav > span { color: var(--muted); margin-right: auto; }

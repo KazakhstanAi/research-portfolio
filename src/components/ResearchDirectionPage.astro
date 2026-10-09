@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ResearchDirectionArtwork from "./ResearchDirectionArtwork.astro";
+import { researchDirections } from "../data/research-directions";
+interface Props { locale: "en" | "ru"; kind: "multimodal" | "human-ai"; }
+const { locale, kind } = Astro.props;
+const ru = locale === "ru";
+const l = ru ? 1 : 0;
+const txt = (en: string, russian: string) => ru ? russian : en;
+const project = researchDirections[kind];
+const sections = [["question", txt("Research question", "Исследовательский вопрос")], ["current", txt("Current prototype", "Текущий прототип")], ["method", txt("Proposed method", "Предлагаемый метод")], ["evaluation", txt("Evaluation", "Оценка")], ["evidence", txt("Scientific basis", "Научная основа")], ["roadmap", txt("Artifacts and publication", "Артефакты и публикация")]];
+---
+<BaseLayout lang={locale} canonicalPath={(ru ? "/ru" : "") + "/projects/" + kind} title={project.name + " — Vais Research"} description={project.question[l]}>
+  <div class="wrap">
+    <div class="project-hero">
+      <a class="text-link" href={(ru ? "/ru" : "/") + "#projects"}>← {txt("All projects", "Все проекты")}</a>
+      <h1>{project.name}</h1>
+      <p class="eyebrow">{project.title}</p>
+      <p class="lead">{project.question[l]}</p>
+      <div class="project-meta"><span>{project.area}</span><span>{project.status[l]}</span><span>{txt("Updated 9 October 2026", "Обновлено 9 октября 2026")}</span></div>
+    </div>
+    <div class="project-app-actions"><a class="button button-accent" href={project.repo}>{txt("Research repository", "Репозиторий исследования")} ↗</a><a class="text-link" href={project.repo + "/blob/main/docs/research_protocol.md"}>{txt("Protocol and roadmap", "Протокол и план")} ↗</a></div>
+    <figure class="project-cover direction-cover"><ResearchDirectionArtwork kind={kind} /><figcaption><span>{project.area}</span><span>{txt("Conceptual illustration · no experimental results", "Концептуальная графика · не результаты эксперимента")}</span></figcaption></figure>
+    <div class="project-overview">{project.overview.map(item => <div><span>{item.label[l]}</span><strong>{item.value[l]}</strong></div>)}</div>
+    <div class="article-grid">
+      <nav class="toc" aria-label={txt("On this page", "На этой странице")}>{sections.map(([id,label]) => <a href={"#" + id}>{label}</a>)}</nav>
+      <div class="article">
+        <section id="question"><p class="eyebrow">01 / {txt("Research question", "Исследовательский вопрос")}</p><h2>{project.heading[l]}</h2><p>{project.problem[l]}</p><div class="note"><p>{project.question[l]}</p></div><ul>{project.hypotheses.map(item => <li>{item[l]}</li>)}</ul></section>
+        <section id="current"><p class="eyebrow">02 / {txt("Implemented today", "Реализовано сейчас")}</p><h2>{txt("A reproducible starting point.", "Воспроизводимая отправная точка.")}</h2><p>{project.current[l]}</p><ul>{project.implemented.map(item => <li>{item[l]}</li>)}</ul><div class="note"><p>{project.limits[l]}</p></div><a class="text-link" href={project.repo + "/blob/main/docs/dataset_card.md"}>{txt("Dataset card and provenance", "Карточка данных и происхождение")} ↗</a></section>
+        <section id="method"><p class="eyebrow">03 / {txt("Proposed full system", "Планируемая полная система")}</p><h2>{project.methodHeading[l]}</h2><p>{project.method[l]}</p><div class="pipeline">{project.pipeline.map((item,i) => <div><span>0{i+1}</span><strong>{item[l]}</strong></div>)}</div><p>{project.dataset[l]}</p></section>
+        <section id="evaluation"><p class="eyebrow">04 / {txt("Experimental design", "Экспериментальный дизайн")}</p><h2>{txt("Test the contribution.", "Проверить научный вклад.")}</h2><p>{project.split[l]}</p><div class="table-wrap"><table><thead><tr><th>{txt("Comparison / metric", "Сравнение / метрика")}</th><th>{txt("What it tests", "Что проверяем")}</th></tr></thead><tbody>{project.evaluation.map(item => <tr><td>{item.label[l]}</td><td>{item.detail[l]}</td></tr>)}</tbody></table></div><p>{project.fairness[l]}</p></section>
+        <section id="evidence"><p class="eyebrow">05 / {txt("Annotated primary sources", "Первоисточники с комментариями")}</p><h2>{txt("Methods with a scientific basis.", "Методы с научной основой.")}</h2><p>{txt("External papers inform the study design. They are separate from this project's own protocol and do not validate its prototype.", "Внешние статьи помогают спроектировать исследование. Они указаны отдельно от собственного протокола проекта и не подтверждают качество прототипа.")}</p><p class="reading-date">{txt("Sources checked", "Источники проверены")}: 09.10.2026</p>{project.references.map((ref,i) => <article class="paper" id={"ref-" + ref.id}><div class="meta">[{i+1}] {ref.type[l]} · {ref.year}</div><h3 class="paper-title"><a href={ref.url}>{ref.title}</a></h3><p class="meta">{ref.authors} · {ref.venue}</p><p>{ref.finding[l]}</p><p><strong>{txt("Role in this project. ", "Роль в проекте. ")}</strong>{ref.meaning[l]}</p><div class="links"><a href={ref.url}>{txt("Original source", "Первоисточник")} ↗</a></div></article>)}</section>
+        <section id="roadmap"><p class="eyebrow">06 / {txt("Next milestones", "Следующие этапы")}</p><h2>{txt("From prototype to a research result.", "От прототипа к научному результату.")}</h2><ol>{project.roadmap.map(item => <li>{item[l]}</li>)}</ol><h3>{txt("Planned research artifacts", "Планируемые научные артефакты")}</h3><p>{project.artifacts[l]}</p><h3>{txt("Publication direction", "Публикационная цель")}</h3><p>{project.publication[l]}</p><p class="small muted">{txt("No project paper or validated participant-study results are claimed. Venue names are intended submission directions, not acceptances.", "Собственная статья и подтверждённые результаты исследования с участниками пока не заявлены. Названия площадок — ориентиры для подачи, а не принятые публикации.")}</p></section>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

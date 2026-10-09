@@ -1,0 +1,26 @@
+---
+interface Props { kind: "multimodal" | "human-ai"; }
+const { kind } = Astro.props;
+const multimodal = kind === "multimodal";
+---
+<svg class="research-art" viewBox="0 0 700 560" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true" focusable="false">
+  <rect width="700" height="560" fill={multimodal ? "#dde7ee" : "#eee1cb"} />
+  <g stroke={multimodal ? "#a4bacb" : "#c4ac87"} opacity=".5">
+    {[100,190,280,370,460].map(y => <path d={`M0 ${y}H700`} />)}
+    {[105,245,385,525,665].map(x => <path d={`M${x} 0V560`} />)}
+  </g>
+  {multimodal ? <g stroke="#315c86" stroke-width="2">
+    <rect x="65" y="160" width="135" height="190" rx="4" fill="#f5f3ec" />
+    <path d="M88 191H170M88 218H177M88 239H157M88 267H177M88 288H167M88 319H144" />
+    <rect x="272" y="210" width="156" height="104" rx="4" fill="#f5f3ec" />
+    <path d="M295 236H362M295 282L321 259L343 275L374 246L402 260M200 255H272M428 255H488" />
+    {Array.from({length: 20}, (_, i) => <path d={`M${490 + i * 7} ${280 - 15 - Math.abs(Math.sin(i * .7)) * 48}V${280 + 15 + Math.abs(Math.sin(i * .7)) * 48}`} />)}
+    <path d="M130 385H563M130 379V391M350 379V391M563 379V391" stroke-dasharray="4 5" />
+    <g fill="#315c86" font-family="Arial,sans-serif" font-size="13" stroke="none"><text x="96" y="421">PAPER</text><text x="324" y="421">SLIDE</text><text x="530" y="421">SPEECH</text></g>
+  </g> : <g stroke="#805329" stroke-width="2">
+    <path d="M73 300H627" stroke-dasharray="4 6" />
+    {[115,230,345,460,575].map((x,i) => <g><circle cx={x} cy={300} r="19" fill="#f5f3ec" /><path d={`M${x} 281V${210 + (i % 2) * 20}`} /><circle cx={x} cy={190 + (i % 2) * 20} r="17" fill="#d1b68d" /></g>)}
+    <path d="M115 335C180 440 280 360 345 400S500 340 575 370" stroke-width="3" />
+    <g fill="#805329" font-family="Arial,sans-serif" font-size="13" stroke="none"><text x="71" y="143">HISTORY → ASSISTANCE → FEEDBACK</text><text x="86" y="478">t₁</text><text x="553" y="478">tₙ</text></g>
+  </g>}
+</svg>
