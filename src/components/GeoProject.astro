@@ -8,7 +8,7 @@ const ru = locale === "ru";
 const l = ru ? 1 : 0;
 const txt = (en: string, russian: string) => ru ? russian : en;
 const sections = [
- ["question",txt("The question","Задача")],["method",txt("Methods","Методы")],
+ ["question",txt("The question","Задача")],["method",txt("Methods","Методы")],["transfer",txt("Cross-site learning","Перенос между объектами")],
  ["evidence",txt("Scientific basis","Научная основа")],["analogs",txt("Existing approaches","Аналоги")],
  ["pilot",txt("Pilot and evaluation","Пилот и оценка")],["limits",txt("Open questions","Открытые вопросы")]
 ];
@@ -18,7 +18,8 @@ const sections = [
   <div class="project-hero">
     <a class="text-link" href={(ru ? "/ru" : "/") + "#projects"}>← {txt("All projects","Все проекты")}</a>
     <h1>Central Asia GeoAI</h1>
-    <p class="lead">{txt("Can satellite observations help identify tailings facilities that need closer engineering attention?","Могут ли спутниковые наблюдения помочь находить хвостохранилища, которым требуется дополнительная инженерная проверка?")}</p>
+    <p class="eyebrow">Multimodal Spatiotemporal Learning for Cross-Site Tailings Storage Facility Deformation Monitoring</p>
+    <p class="lead">{txt("How well do spatiotemporal models generalize to unseen tailings facilities with different geology, climate and operating conditions?","Насколько хорошо пространственно-временные модели переносятся на новые хвостохранилища с иной геологией, климатом и условиями эксплуатации?")}</p>
     <div class="project-meta"><span>GeoRisk / Tailings Monitoring</span><span>{txt("Research proposal","Исследовательский проект")}</span><span>{txt("Pilot: 3–5 facilities","Пилот: 3–5 объектов")}</span></div>
   </div>
   <div class="project-app-actions"><span class="status">{txt("Research stage · application planned", "Исследование · приложение планируется")}</span><a class="text-link" href="https://github.com/KazakhstanAi/central-asia-geoai">{txt("Research repository", "Репозиторий исследования")} ↗</a></div>
@@ -31,7 +32,7 @@ const sections = [
         <p class="eyebrow">01 / {txt("Research question","Постановка вопроса")}</p>
         <h2>{txt("From surface movement to a reason to investigate.","От смещения поверхности — к основанию для проверки.")}</h2>
         <p>{txt("Tailings facilities store waste from mineral processing. Understanding how their surfaces change can help direct inspections. Kazakhstan's published inventory research motivates a small, documented local study.","Хвостохранилища содержат отходы обогащения руды. Наблюдение за изменениями их поверхности может помогать планировать проверки. Исследование казахстанских реестров даёт основу для небольшой документированной локальной выборки.")} <a href="#ref-kazakhstan">[5]</a></p>
-        <div class="note"><p>{txt("My question: can temporal machine learning detect meaningful deformation changes more reliably than velocity thresholds and statistical change detection?","Мой вопрос: может ли машинное обучение временных рядов надёжнее выявлять значимые изменения деформации, чем пороги скорости и статистическое обнаружение изменений?")}</p></div>
+        <div class="note"><p>{txt("The central ML question: can a model trained on several facilities detect meaningful deformation changes at a site it has never seen? Compare this transfer against simple rules and single-site models.","Главный ML-вопрос: может ли модель, обученная на нескольких объектах, находить значимые изменения деформации на новом хвостохранилище? Сравнить перенос с простыми правилами и моделями одного объекта.")}</p></div>
         <p>{txt("The planned platform shares a data catalogue, processing history, API and map across specialised modules. Tailings monitoring is the first module; water, agriculture and other layers remain future directions. No field results or trained model have been published by this project yet.","Планируемая платформа объединяет каталог данных, историю обработки, API и карту для специализированных модулей. Мониторинг хвостохранилищ — первый модуль; вода, сельское хозяйство и другие слои остаются дальнейшими направлениями. Собственных полевых результатов и обученной модели у проекта пока нет.")}</p>
       </section>
       <section id="method">
@@ -50,6 +51,28 @@ const sections = [
           <tr><td>Autoencoder / TCN / LSTM</td><td>{txt("Whether learning temporal structure improves detection at the same false-alarm rate. One family will be selected after the data audit.","Улучшает ли обучение временной структуры обнаружение при той же частоте ложных тревог. Одно семейство выберем после аудита данных.")}</td></tr>
         </tbody></table></div>
         <p class="small muted">{txt("These are planned comparisons. The cited papers do not establish that Isolation Forest, an LSTM or a Transformer will be best for the selected Kazakhstan facilities.","Это планируемые сравнения. Приведённые статьи не доказывают, что Isolation Forest, LSTM или Transformer окажется лучшим на выбранных объектах Казахстана.")}</p>
+      </section>
+      <section id="transfer">
+        <p class="eyebrow">{txt("Research extension / proposed", "Расширение исследования / план")}</p>
+        <h2>{txt("Learn across sites.\nAccount for what changes.", "Учиться на разных объектах.\nУчитывать различия.")}</h2>
+        <p>{txt("The existing feasibility pilot remains the first stage. The expanded research studies multimodal spatiotemporal learning and domain shift across Kazakhstan facilities; no cross-site results are available yet.", "Пилот реализуемости остаётся первым этапом. Расширенное исследование изучает мультимодальное пространственно-временное обучение и domain shift между объектами Казахстана; результатов cross-site экспериментов пока нет.")}</p>
+        <ul>
+          <li>{txt("H1 · Multi-site training transfers better to an unseen facility than training on a single site.", "H1 · Обучение на нескольких объектах переносится на новый объект лучше обучения на одном.")}</li>
+          <li>{txt("H2 · Optical, terrain and weather context improves anomaly detection over InSAR alone.", "H2 · Оптические, рельефные и погодные данные улучшают обнаружение аномалий относительно одного InSAR.")}</li>
+          <li>{txt("H3 · Uncertainty and out-of-distribution diagnostics help distinguish suspicious deformation from insufficient or unfamiliar observations.", "H3 · Неопределённость и OOD-диагностика помогают отделить подозрительную деформацию от недостаточных или незнакомых наблюдений.")}</li>
+        </ul>
+        <div class="table-wrap"><table><thead><tr><th>{txt("Planned modality", "Планируемая модальность")}</th><th>{txt("Features and role", "Признаки и роль")}</th></tr></thead><tbody>
+          <tr><td>Sentinel-1 / InSAR</td><td>{txt("Displacement, coherence and deformation time series after quality control.", "Смещения, когерентность и временные ряды деформаций после контроля качества.")}</td></tr>
+          <tr><td>Sentinel-2</td><td>{txt("RGB, NDVI, NDWI and changes in surface or water coverage.", "RGB, NDVI, NDWI и изменения поверхности или водных участков.")}</td></tr>
+          <tr><td>DEM + weather</td><td>{txt("Elevation, slope, aspect, precipitation, temperature and snowmelt context.", "Высота, уклон, экспозиция, осадки, температура и снеготаяние.")}</td></tr>
+          <tr><td>{txt("Facility metadata", "Метаданные объектов")}</td><td>{txt("Age, geometry, construction and operating status where available and permitted.", "Возраст, геометрия, конструкция и статус эксплуатации при наличии и разрешённом доступе.")}</td></tr>
+        </tbody></table></div>
+        <p>{txt("Proposed architecture: spatial CNN/ViT encoders + temporal encoder + multimodal fusion. Evaluate forecasting or anomaly detection according to available labels. Compare statistical rules, Isolation Forest and temporal baselines before selecting an advanced model.", "Планируемая архитектура: пространственные CNN/ViT-энкодеры + временной энкодер + мультимодальное объединение. Прогнозирование или поиск аномалий выбираются по доступной разметке. До сложной модели сравнить статистические правила, Isolation Forest и временные baseline.")}</p>
+        <h3>{txt("Leave one facility out", "Оставить один объект для теста")}</h3>
+        <p>{txt("Reserve entire unseen facilities for testing and a separate site or training-site folds for validation. Repeat leave-one-site-out evaluation when the cohort permits it. Fit preprocessing and choose models only on training/validation sites; preserve temporal order and group nearby pixels. A 3–5-site pilot is a feasibility study, not a broad generalization claim.", "Отложить целые новые объекты для теста и отдельный объект либо folds обучающих объектов для validation. Повторять leave-one-site-out при достаточной выборке. Препроцессинг и выбор модели используют только train/validation; сохраняется хронология и группировка соседних пикселей. Пилот на 3–5 объектах проверяет реализуемость, а не доказывает широкое обобщение.")}</p>
+        <p>{txt("Report in-domain versus unseen-site degradation; MAE/RMSE for forecasting; PR-AUC/F1 for reliable anomaly labels; false alarms, coverage and delay. Brier score/ECE require a defined probability target and held-out labels. Report InSAR quality, predictive uncertainty and OOD separately; these are not interchangeable confidence scores.", "Показать падение качества in-domain → новый объект; MAE/RMSE для прогноза; PR-AUC/F1 при надёжной разметке аномалий; ложные тревоги, покрытие и задержку. Brier score/ECE требуют определённой вероятностной цели и отложенной разметки. Качество InSAR, неопределённость модели и OOD указываются отдельно и не заменяют друг друга.")}</p>
+        <h3>{txt("Planned contribution and artifacts", "Планируемый вклад и артефакты")}</h3>
+        <p>{txt("A documented Kazakhstan TSF benchmark, cross-site and modality ablations, processing pipeline, permitted metadata catalogue, model cards and a map/API with provenance. Publication direction: IEEE TGRS, with ISPRS Journal, IEEE JSTARS or GeoAI workshops depending on the validated contribution. These are submission targets; no paper is claimed as accepted.", "Документированный Kazakhstan TSF benchmark, cross-site и modality ablations, pipeline обработки, разрешённый каталог метаданных, model cards и карта/API с происхождением данных. Публикационный ориентир — IEEE TGRS; ISPRS Journal, IEEE JSTARS или GeoAI workshops зависят от подтверждённого вклада. Это цели подачи, принятая статья пока не заявлена.")}</p>
       </section>
       <section id="evidence">
         <p class="eyebrow">03 / {txt("Annotated reading list","Литература с комментариями")}</p>

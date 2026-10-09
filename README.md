@@ -1,15 +1,18 @@
 # Vais Research
 
-Personal, bilingual research portfolio. A research-lab-inspired editorial layout combines large typography, a featured project, original terrain, speech and evidence illustrations, and a curated reading section. The homepage introduces three independent projects with their current status.
+Personal, bilingual research portfolio. An editorial layout combines large typography, original conceptual illustrations and annotated scientific sources. Three ML research directions explore generalization to new sites, modalities and people. VAIS Voice and Enterprise remain accessible as applied research projects.
 
-- [Central Asia GeoAI](https://github.com/KazakhstanAi/central-asia-geoai): a shared geospatial platform, starting with GeoRisk tailings monitoring using InSAR time series and anomaly screening.
-- [VAIS Voice](https://github.com/KazakhstanAi/kazakh-russian-speech-intelligence): synthetic speech authenticity for Kazakh–Russian environments. Planned MVP: audio upload → detector → score with quality/calibration information. A protected KZ/RU benchmark validates the detector; it is R&D infrastructure, not a separate product. Historical repository URL retained.
+- [Central Asia GeoAI](https://github.com/KazakhstanAi/central-asia-geoai): tailings monitoring, with a proposed extension to cross-site multimodal spatiotemporal learning and uncertainty. Initial 3–5-site feasibility pilot remains planned.
+- [Scientific Multimodal AI](https://github.com/KazakhstanAi/multimodal): grounded paper–slide–speech assessment. Current implementation is a prepared-modality TF-IDF/ridge baseline with a synthetic demonstration.
+- [Human–AI Decision Systems](https://github.com/KazakhstanAi/Human-AI-RL): adaptive assistance conditioned on interaction history. Current implementation is a synthetic simulator with LinUCB, not a validated participant study or offline RL system.
+- [VAIS Voice](https://github.com/KazakhstanAi/vais-voice): KZ/RU synthetic-speech research with a benchmark and detector web/gateway prototype. Detection requires a healthy inference service; generation in real mode remains unavailable.
+- VAIS Enterprise: KZ/RU RAG and agent evaluation with a synthetic demo protocol.
 
 GeoAI has a dedicated research page with six annotated primary sources, three comparable systems and a conditional pilot plan. VAIS Voice has a bilingual page with six relevant sources, an audio-processing pipeline, detection metrics and a roadmap. The research pages retain their methodology and planned experiments. The voice report mockup is explicitly illustrative; the live Voice application is the source for current benchmark and detector availability. Enterprise has a published synthetic demo protocol.
 
 ## Stack and routes
 
-VAIS Enterprise is the third homepage project, linking to its bilingual overview and the demo benchmark at `https://enterprise.vaislabs.com`.
+The applied-project section links to Voice and Enterprise applications. All five projects share navigation and bilingual overview pages. Implementation status and publication targets are distinguished from validated results.
 
 Astro 7, TypeScript, static HTML, custom responsive CSS, system fonts. Navigation and content work without client-side JavaScript.
 
@@ -17,6 +20,8 @@ Astro 7, TypeScript, static HTML, custom responsive CSS, system fonts. Navigatio
 | --- | --- | --- |
 | Portfolio | `/` | `/ru` |
 | GeoAI research | `/projects/geoai` | `/ru/projects/geoai` |
+| Scientific Multimodal AI | `/projects/multimodal` | `/ru/projects/multimodal` |
+| Human–AI Decision Systems | `/projects/human-ai` | `/ru/projects/human-ai` |
 | VAIS Voice | `/projects/voice` | `/ru/projects/voice` |
 | VAIS Enterprise | `/enterprise` | `/ru/enterprise` |
 
@@ -37,9 +42,11 @@ npm run preview
 
 ## Content
 
-- `src/components/LandingPage.astro`: bilingual introduction, three project cards and research materials.
+- `src/components/LandingPage.astro`: three research cards, two applied-project cards and scientific materials.
+- `src/data/research-directions.ts`: bilingual research questions, implementation boundaries, evaluation plans and five annotated primary sources for the new directions.
+- `src/components/ResearchDirectionPage.astro`, `ResearchDirectionArtwork.astro`: shared research-page structure and original vector illustrations.
 - `src/data/projects.ts`, `src/components/ProjectNav.astro`: shared project links and identities on every portfolio page.
-- `src/styles/projects.css`: orange GeoAI, green Voice and purple Enterprise themes.
+- `src/styles/projects.css`: shared orange GeoAI, blue Multimodal, ochre Human–AI, green Voice and purple Enterprise themes.
 - `src/components/EnterprisePage.astro`: Enterprise overview, protocol, dataset and reproducibility sections.
 - `src/components/GeoProject.astro`: bilingual research proposal and evaluation plan.
 - `src/components/VoiceProject.astro`: bilingual detector concept, static report mockup, evaluation protocol and limitations.
