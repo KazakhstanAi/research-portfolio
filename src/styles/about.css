@@ -1,0 +1,64 @@
+.personal-hero { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); gap: 80px; align-items: center; padding-block: 65px 55px; }
+.personal-intro > .eyebrow { margin-bottom: 30px; color: var(--muted); }
+.personal-intro h1 { font-size: clamp(3.2rem, 6.8vw, 6.2rem); }
+.personal-role { font: 25px/1.4 var(--serif); color: var(--accent); margin-top: 25px; margin-bottom: 18px; }
+.personal-lead { font-size: 18px; max-width: 600px; color: var(--muted); }
+.personal-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
+.personal-card { background: #ece6da; border: 1px solid #d4c8b8; border-radius: 6px; padding: 24px 30px; }
+.personal-monogram { max-width: 320px; margin: 0 auto 15px; }
+.personal-monogram svg { display: block; width: 100%; }
+.personal-card dl { margin: 0; }
+.personal-card dl > div { border-top: 1px solid #d4c8b8; padding: 15px 0; }
+.personal-card dt { font-size: 11px; color: var(--muted); margin-bottom: 7px; }
+.personal-card dd { font-size: 14px; line-height: 1.5; margin: 0; }
+.personal-strip { display: flex; flex-wrap: wrap; gap: 16px 40px; border-block: 1px solid var(--line); padding-block: 21px; font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+.personal-content { padding-top: 60px; }
+.experience-item { display: grid; grid-template-columns: 135px minmax(0, 1fr); gap: 28px; border-top: 1px solid var(--line); padding-top: 27px; padding-bottom: 18px; }
+.experience-period { display: flex; flex-direction: column; gap: 14px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+.experience-period > span { color: var(--accent); }
+.experience-item .eyebrow { margin: 0 0 12px; }
+.experience-item h3 { margin: 0 0 12px; font-size: 25px; }
+.experience-org { color: var(--muted); font-size: 14px; margin-bottom: 15px; }
+.experience-item ul { margin-top: 0; }
+.experience-item li { font-size: 15px; }
+.personal-research { display: grid; gap: 14px; margin-block: 28px; }
+.personal-research > a { display: block; text-decoration: none; padding: 24px 28px; border: 1px solid var(--line); border-left: 3px solid var(--research-color); }
+.personal-research > a:hover { background: #eeece4; color: var(--fg); }
+.personal-research > a > .eyebrow { color: var(--research-color); }
+.personal-research h3 { display: flex; justify-content: space-between; gap: 18px; margin: 14px 0; }
+.personal-research p { font-size: 14px; color: var(--muted); margin: 0; }
+.personal-skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 32px; }
+.personal-skills article { border-top: 1px solid var(--line); padding-top: 22px; }
+.personal-skills h3 { margin: 0 0 18px; font-size: 22px; }
+.personal-skills ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.personal-skills li { margin: 0; padding: 5px 9px; border: 1px solid var(--line); border-radius: 3px; font-size: 12px; line-height: 1.5; }
+.education-item { padding: 25px 0; border-top: 1px solid var(--line); }
+.education-item h3 { margin: 14px 0; font-size: 24px; }
+.education-item p { font-size: 14px; color: var(--muted); margin: 0; }
+.personal-languages { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 20px; font-size: 13px; }
+.personal-contact { background: #422d24; color: var(--bg); padding: 32px; border-radius: 6px; }
+.article .personal-contact .eyebrow { color: #ead1bf; }
+.personal-contact p { color: #f1dfd0; }
+.personal-contact .button-accent { background: #f5f3ec; color: #422d24; }
+.personal-contact .button-light { border: 1px solid #c0a58d; background: transparent; color: #f5f3ec; }
+.personal-phone { margin-top: 24px; }
+.personal-phone:hover { color: #ead1bf; }
+@media (max-width: 1100px) { .personal-hero { gap: 40px; } }
+@media (max-width: 800px) {
+  .personal-hero { grid-template-columns: 1fr; gap: 32px; padding-block: 40px; }
+  .personal-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: center; }
+  .personal-monogram { width: 100%; margin: 0; }
+  .personal-content { padding-top: 40px; }
+}
+@media (max-width: 580px) {
+  .personal-intro h1 { font-size: clamp(2.5rem, 10.5vw, 3.6rem); overflow-wrap: anywhere; }
+  .personal-lead { font-size: 17px; }
+  .personal-card { padding: 20px; gap: 20px; }
+  .personal-card dd { font-size: 12px; }
+  .personal-strip { gap: 12px 24px; font-size: 10px; }
+  .experience-item { grid-template-columns: 1fr; gap: 18px; }
+  .experience-period { flex-direction: row; gap: 15px; }
+  .personal-skills { grid-template-columns: 1fr; }
+  .personal-contact { padding: 24px; }
+  .personal-research > a { padding: 22px; }
+}
