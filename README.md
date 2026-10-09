@@ -1,10 +1,11 @@
 # Vais Research
 
-Personal, bilingual research portfolio. An editorial layout combines large typography, original conceptual illustrations and annotated scientific sources. Three ML research directions explore generalization to new sites, modalities and people. VAIS Voice and Enterprise remain accessible as applied research projects.
+Personal, bilingual research portfolio. An editorial layout combines large typography, original conceptual illustrations and annotated scientific sources. Four ML research directions explore generalization to new sites, modalities and people, and normative retrieval influence. VAIS Voice and Enterprise remain accessible as applied research projects.
 
 - [Central Asia GeoAI](https://github.com/KazakhstanAi/central-asia-geoai): tailings monitoring, with a proposed extension to cross-site multimodal spatiotemporal learning and uncertainty. Initial 3–5-site feasibility pilot remains planned.
 - [Scientific Multimodal AI](https://github.com/KazakhstanAi/multimodal): grounded paper–slide–speech assessment. Current implementation is a prepared-modality TF-IDF/ridge baseline with a synthetic demonstration.
 - [Human–AI Decision Systems](https://github.com/KazakhstanAi/Human-AI-RL): adaptive assistance conditioned on interaction history. Current implementation is a synthetic simulator with LinUCB, not a validated participant study or offline RL system.
+- Normative RAG / Moral Drift: planned controlled evaluation of organizational values, authority pressure and conflicting retrieval corpora. Results remain to be evaluated; direct bibliography entries are explicit TODOs.
 - [VAIS Voice](https://github.com/KazakhstanAi/vais-voice): KZ/RU synthetic-speech research with a benchmark and detector web/gateway prototype. Detection requires a healthy inference service; generation in real mode remains unavailable.
 - VAIS Enterprise: KZ/RU RAG and agent evaluation with a synthetic demo protocol.
 
@@ -12,7 +13,7 @@ GeoAI has a dedicated research page with six annotated primary sources, three co
 
 ## Stack and routes
 
-The applied-project section links to Voice and Enterprise applications. All five projects share navigation and bilingual overview pages. Implementation status and publication targets are distinguished from validated results.
+The applied-project section links to Voice and Enterprise applications. All six projects share navigation and bilingual overview pages. Implementation status and publication targets are distinguished from validated results.
 
 Astro 7, TypeScript, static HTML, custom responsive CSS, system fonts. Navigation and content work without client-side JavaScript.
 
@@ -23,6 +24,7 @@ Astro 7, TypeScript, static HTML, custom responsive CSS, system fonts. Navigatio
 | GeoAI research | `/projects/geoai` | `/ru/projects/geoai` |
 | Scientific Multimodal AI | `/projects/multimodal` | `/ru/projects/multimodal` |
 | Human–AI Decision Systems | `/projects/human-ai` | `/ru/projects/human-ai` |
+| Normative RAG / Moral Drift | `/projects/normative-rag` | `/ru/projects/normative-rag` |
 | VAIS Voice | `/projects/voice` | `/ru/projects/voice` |
 | VAIS Enterprise | `/enterprise` | `/ru/enterprise` |
 
@@ -43,11 +45,12 @@ npm run preview
 
 ## Content
 
-- `src/components/LandingPage.astro`: three research cards, two applied-project cards and scientific materials.
+- `src/components/LandingPage.astro`: four research cards, two applied-project cards and scientific materials.
 - `src/components/AboutPage.astro`, `src/styles/about.css`: bilingual personal portfolio sourced from the supplied CV, with experience, skills, education, research links and contact details.
 - `public/temirlan-abdykarimov-cv.pdf`: original supplied CV, served for download from both personal pages.
 - `src/data/research-directions.ts`: bilingual research questions, implementation boundaries, evaluation plans and five annotated primary sources for the new directions.
 - `src/components/ResearchDirectionPage.astro`, `ResearchDirectionArtwork.astro`: shared research-page structure and original vector illustrations.
+- `src/data/normative-rag.ts`, `src/components/NormativeRagProject.astro`, `NormativeRagArtwork.astro`, `src/styles/normative-rag.css`: bilingual protocol, conceptual diagrams, planned metrics and reference TODOs. Bibliography uses supplied or existing repository sources only.
 - `src/data/projects.ts`, `src/components/ProjectNav.astro`: shared project links and identities on every portfolio page.
 - `src/styles/projects.css`: shared orange GeoAI, blue Multimodal, ochre Human–AI, green Voice and purple Enterprise themes.
 - `src/components/EnterprisePage.astro`: Enterprise overview, protocol, dataset and reproducibility sections.
