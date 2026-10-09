@@ -1,0 +1,45 @@
+---
+interface Props { ru: boolean; }
+const { ru } = Astro.props;
+const txt = (en: string, russian: string) => ru ? russian : en;
+const modes = [
+  { id: "ai", label: "AI / ML", title: txt("From data to working models.", "От данных к работающим моделям."), text: txt("Python workflows, model evaluation and practical AI integration in banking.", "ML-процессы на Python, оценка моделей и практическая интеграция AI в банковской сфере."), tags: ["Python", "ML", "LLMs"], link: "#experience", action: txt("Explore the experience", "Посмотреть опыт") },
+  { id: "systems", label: txt("Systems", "Системы"), title: txt("Built to work together.", "Системы, которые работают вместе."), text: txt("Backend development, event-driven architecture and large collaborative open-source codebases.", "Backend-разработка, событийная архитектура и крупные совместные open-source кодовые базы."), tags: ["C# / .NET", "ECS", "Open source"], link: "#experience", action: txt("Explore the experience", "Посмотреть опыт") },
+  { id: "research", label: txt("Research", "Исследования"), title: txt("A question. A method. A test.", "Вопрос. Метод. Проверка."), text: txt("Independent studies of cross-site learning, scientific multimodality and human–AI decisions.", "Самостоятельные исследования cross-site learning, научной мультимодальности и Human–AI решений."), tags: ["GeoAI", "Multimodal", "Human–AI"], link: "#research", action: txt("Explore the research", "Посмотреть исследования") },
+];
+---
+<div class="workbench" data-focus="ai">
+  <div class="workbench-top"><span>{txt("A map of my work", "Карта моей работы")}</span><span aria-hidden="true">↗</span></div>
+  <div class="workbench-art" aria-hidden="true">
+    <svg viewBox="0 0 440 280" fill="none">
+      <defs><pattern id="workbench-grid" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#7882a1" opacity=".45"/></pattern></defs>
+      <rect width="440" height="280" fill="url(#workbench-grid)"/>
+      <circle class="workbench-orbit" cx="220" cy="140" r="110" stroke="#7f88a8" stroke-dasharray="3 8"/>
+      <path class="workbench-wire" d="M105 110L220 198L335 110M105 110H335" stroke="#929ab9" stroke-width="1.5"/>
+      <path d="M112 113L213 191M227 191L328 113" stroke="#929ab9" stroke-dasharray="3 6"/>
+      <g class="workbench-node node-ai"><rect x="60" y="60" width="90" height="90" rx="24"/><text x="105" y="115" text-anchor="middle">AI</text></g>
+      <g class="workbench-node node-systems"><rect x="290" y="60" width="90" height="90" rx="24"/><text x="335" y="115" text-anchor="middle">SE</text></g>
+      <g class="workbench-node node-research"><rect x="175" y="153" width="90" height="90" rx="24"/><text x="220" y="208" text-anchor="middle">R&amp;D</text></g>
+      <g fill="#c5c9dc" font-family="monospace" font-size="10"><text x="82" y="40">MODELS</text><text x="312" y="40">SYSTEMS</text><text x="204" y="266">METHODS</text></g>
+      <circle cx="220" cy="105" r="5" fill="#e7c4a0"/><path d="M214 105H226M220 99V111" stroke="#222b46"/>
+    </svg>
+  </div>
+  <div class="workbench-controls" role="group" aria-label={txt("Explore an area of my work", "Выбрать направление работы")}>
+    {modes.map((mode,i) => <button type="button" data-mode={mode.id} aria-pressed={i === 0 ? "true" : "false"} aria-controls={"workbench-" + mode.id}>{mode.label}</button>)}
+  </div>
+  <div class="workbench-panels">{modes.map(mode => <div class="workbench-panel" id={"workbench-" + mode.id} data-panel={mode.id}><h2>{mode.title}</h2><p>{mode.text}</p><div class="workbench-tags">{mode.tags.map(tag => <span>{tag}</span>)}</div><a href={mode.link}>{mode.action} ↗</a></div>)}</div>
+</div>
+<script>
+  for (const workbench of document.querySelectorAll<HTMLElement>(".workbench")) {
+    const buttons = workbench.querySelectorAll<HTMLButtonElement>("[data-mode]");
+    const panels = workbench.querySelectorAll<HTMLElement>("[data-panel]");
+    const select = (mode: string) => {
+      workbench.dataset.focus = mode;
+      for (const button of buttons) button.setAttribute("aria-pressed", String(button.dataset.mode === mode));
+      for (const panel of panels) panel.hidden = panel.dataset.panel !== mode;
+    };
+    select("ai");
+    workbench.dataset.ready = "true";
+    for (const button of buttons) button.addEventListener("click", () => select(button.dataset.mode!));
+  }
+</script>
