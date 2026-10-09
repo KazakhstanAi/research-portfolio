@@ -19,6 +19,7 @@ Astro 7, TypeScript, static HTML, custom responsive CSS, system fonts. Navigatio
 | Page | English | Russian |
 | --- | --- | --- |
 | Portfolio | `/` | `/ru` |
+| Personal portfolio / CV | `/about` | `/ru/about` |
 | GeoAI research | `/projects/geoai` | `/ru/projects/geoai` |
 | Scientific Multimodal AI | `/projects/multimodal` | `/ru/projects/multimodal` |
 | Human–AI Decision Systems | `/projects/human-ai` | `/ru/projects/human-ai` |
@@ -43,6 +44,8 @@ npm run preview
 ## Content
 
 - `src/components/LandingPage.astro`: three research cards, two applied-project cards and scientific materials.
+- `src/components/AboutPage.astro`, `src/styles/about.css`: bilingual personal portfolio sourced from the supplied CV, with experience, skills, education, research links and contact details.
+- `public/temirlan-abdykarimov-cv.pdf`: original supplied CV, served for download from both personal pages.
 - `src/data/research-directions.ts`: bilingual research questions, implementation boundaries, evaluation plans and five annotated primary sources for the new directions.
 - `src/components/ResearchDirectionPage.astro`, `ResearchDirectionArtwork.astro`: shared research-page structure and original vector illustrations.
 - `src/data/projects.ts`, `src/components/ProjectNav.astro`: shared project links and identities on every portfolio page.

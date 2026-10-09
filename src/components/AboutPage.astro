@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { projects } from "../data/projects";
+import "../styles/about.css";
+interface Props { locale: "en" | "ru"; }
+const { locale } = Astro.props;
+const ru = locale === "ru";
+const txt = (en: string, russian: string) => ru ? russian : en;
+const prefix = ru ? "/ru" : "";
+const cv = "/temirlan-abdykarimov-cv.pdf";
+const experience = [
+  {
+    period: txt("2026 — Present", "2026 — настоящее время"),
+    role: "AI Engineer",
+    organization: txt("Commercial bank · confidential", "Коммерческий банк · название конфиденциально"),
+    focus: txt("Applied AI / banking", "Прикладной AI / банковская сфера"),
+    items: [
+      txt("Develop and integrate AI and machine learning solutions for banking use cases.", "Участвую в разработке и интеграции AI- и ML-решений для банковских задач."),
+      txt("Work on data preparation, ML experiments, model development and evaluation, and integration into production-oriented systems.", "Работаю с подготовкой данных, ML-экспериментами, разработкой и оценкой моделей, интеграцией в системы для практического применения."),
+      txt("Explore LLM applications with engineers and domain specialists.", "Изучаю применение LLM совместно с инженерами и профильными специалистами."),
+    ],
+  },
+  {
+    period: txt("2021 — Present", "2021 — настоящее время"),
+    role: "Backend / Systems Developer",
+    organization: "Open source · SS13 / SS14",
+    focus: txt("Systems / collaborative engineering", "Системы / совместная разработка"),
+    items: [
+      txt("Build C#/.NET gameplay and backend systems for large multiplayer projects: ECS, client–server synchronization and event-driven architecture.", "Разрабатываю gameplay- и backend-системы на C#/.NET для крупных многопользовательских проектов: ECS, клиент-серверная синхронизация и событийная архитектура."),
+      txt("Implement modular inventory, interaction, equipment and container systems, with layered visual synchronization.", "Реализую модульные системы инвентаря, взаимодействий, экипировки и контейнеров, синхронизацию визуальных слоёв."),
+      txt("Debug and refactor large collaborative codebases. Contributed more than 40 pull requests to active repositories.", "Отлаживаю и рефакторю крупные совместные кодовые базы. Внёс более 40 pull requests в активные репозитории."),
+    ],
+  },
+  {
+    period: "2025 — 2026",
+    role: "No-Code Developer",
+    organization: "ACS Solutions",
+    focus: txt("Automation / business workflows", "Автоматизация / бизнес-процессы"),
+    items: [
+      txt("Built automation bots and business workflows with no-code platforms, databases and backend logic.", "Создавал ботов и бизнес-процессы на no-code платформах с базами данных и backend-логикой."),
+      txt("Structured business data and visualized processes and system architecture for internal workflow optimization.", "Структурировал бизнес-данные, визуализировал процессы и архитектуру систем для оптимизации внутренних рабочих процессов."),
+    ],
+  },
+];
+const skills = [
+  { name: "AI / Machine Learning", items: ["LLMs", "Supervised learning", "Regression & classification", "Feature engineering", "Model training & evaluation"] },
+  { name: "Python / Data Science", items: ["Python", "Pandas", "NumPy", "Scikit-learn", "TensorFlow", "Jupyter", "Matplotlib"] },
+  { name: "Software Engineering", items: ["C# / .NET", "Java / Spring Boot", "REST APIs", "Client–server architecture", "ECS", "Event-driven systems", "OOP / SOLID"] },
+  { name: "Data / Tools", items: ["SQL", "PostgreSQL", "MySQL", "Git / GitHub", "Debugging", "Refactoring", "Pull-request workflows"] },
+];
+const research = [
+  { id: "geoai", detail: txt("Generalization across geographic sites. Multimodal satellite data, deformation time series and uncertainty.", "Обобщение между географическими объектами. Мультимодальные спутниковые данные, временные ряды деформаций и неопределённость.") },
+  { id: "multimodal", detail: txt("Scientific communication grounded in the source paper. Alignment between papers, slides and speech.", "Научная коммуникация с опорой на исходную статью. Связь между статьями, слайдами и речью.") },
+  { id: "human-ai", detail: txt("Learning when to assist. Personalized policies conditioned on human interaction history.", "Выбор момента помощи. Персонализированные политики с учётом истории взаимодействия человека и AI.") },
+];
+const sections = [["profile", txt("Profile", "Профиль")], ["experience", txt("Experience", "Опыт")], ["research", txt("Research", "Исследования")], ["skills", txt("Technical skills", "Технологии")], ["education", txt("Education", "Образование")], ["contact", txt("Contact / CV", "Контакты / CV")]];
+---
+<BaseLayout lang={locale} canonicalPath={prefix + "/about"} title="Temirlan Abdykarimov — AI / ML Engineer · Vais Research" description={txt("AI / ML engineer in Astana. Banking AI, backend and systems development, open-source contributions and independent ML research. Experience, education and CV.", "Темирлан Абдыкаримов — AI / ML инженер в Астане. Банковский AI, backend и системная разработка, open source и независимые ML-исследования. Опыт, образование и CV.")}>
+  <div class="wrap personal-page">
+    <section class="personal-hero" aria-labelledby="personal-name">
+      <div class="personal-intro">
+        <p class="eyebrow"><span class="square-mark"></span>{txt("The person behind Vais Research", "Автор Vais Research")}</p>
+        <h1 id="personal-name">{txt("Temirlan\nAbdykarimov", "Темирлан\nАбдыкаримов")}</h1>
+        <p class="personal-role">AI / ML Engineer</p>
+        <p class="personal-lead">{txt("From software systems to applied AI. I build, evaluate and integrate models, and study how they work with new data and people.", "От программных систем к прикладному AI. Разрабатываю, оцениваю и интегрирую модели, исследую их работу с новыми данными и людьми.")}</p>
+        <div class="personal-actions"><a class="button button-accent" href={cv} download="Temirlan-Abdykarimov-CV.pdf">{txt("Download CV", "Скачать CV")} <span aria-hidden="true">↓</span></a><a class="text-link" href="#experience">{txt("Explore my experience", "Мой опыт")} ↘</a></div>
+      </div>
+      <aside class="personal-card" aria-label={txt("At a glance", "Коротко обо мне")}>
+        <div class="personal-monogram" aria-hidden="true"><svg viewBox="0 0 320 260" fill="none"><g stroke="#ad9b85" opacity=".5"><path d="M0 65H320M0 130H320M0 195H320M80 0V260M160 0V260M240 0V260"/></g><circle cx="160" cy="130" r="82" stroke="#a34630"/><circle cx="160" cy="130" r="96" stroke="#a34630" stroke-dasharray="2 6"/><text x="160" y="156" text-anchor="middle" fill="#422d24" font-family="Georgia,serif" font-size="76">TA</text><path d="M23 23H45M34 12V34M275 237H297M286 226V248" stroke="#a34630"/></svg></div>
+        <dl><div><dt>{txt("Based in", "Город")}</dt><dd>{txt("Astana, Kazakhstan", "Астана, Казахстан")}</dd></div><div><dt>{txt("Current focus", "Сейчас")}</dt><dd>{txt("AI engineering · banking", "AI-инженерия · банковская сфера")}</dd></div><div><dt>{txt("Studying", "Обучение")}</dt><dd>{txt("Master’s at QAIRU · in progress", "Магистратура QAIRU · в процессе")}</dd></div></dl>
+      </aside>
+    </section>
+    <div class="personal-strip"><span>{txt("Applied AI", "Прикладной AI")}</span><span>{txt("Backend & systems", "Backend и системы")}</span><span>Open source</span><span>{txt("Independent research", "Независимые исследования")}</span></div>
+    <div class="article-grid personal-content">
+      <nav class="toc" aria-label={txt("On this page", "На этой странице")}>{sections.map(([id,label]) => <a href={"#" + id}>{label}</a>)}<a href={cv}>{txt("CV · PDF", "Резюме · PDF")} ↗</a></nav>
+      <div class="article">
+        <section id="profile"><p class="eyebrow">01 / {txt("Profile", "Профиль")}</p><h2>{txt("Engineering as a foundation.\nResearch as a direction.", "Инженерия как основа.\nИсследования как направление.")}</h2><p>{txt("I am an AI / ML engineer with a software engineering background in backend, distributed and event-driven systems. I currently work on AI solutions in banking and pursue a master’s degree in Information Technology / Artificial Intelligence at QAIRU.", "Я AI / ML инженер с опытом backend-разработки, распределённых и событийных систем. Сейчас работаю над AI-решениями в банковской сфере и учусь в магистратуре QAIRU по направлению Information Technology / Artificial Intelligence.")}</p><p>{txt("My experience combines Python-based machine learning workflows with C#/.NET development and work in large open-source codebases. Vais Research is where I document independent studies: their questions, methods, current prototypes and remaining limitations.", "Мой опыт объединяет ML-процессы на Python, разработку на C#/.NET и работу с крупными open-source кодовыми базами. В Vais Research я описываю самостоятельные исследования: вопросы, методы, текущие прототипы и ограничения.")}</p></section>
+        <section id="experience"><p class="eyebrow">02 / {txt("Experience", "Опыт")}</p><h2>{txt("Work that shaped my approach.", "Опыт, который формирует мой подход.")}</h2><div class="experience-list">{experience.map((job,i) => <article class="experience-item"><div class="experience-period"><span>0{i+1}</span><time>{job.period}</time></div><div><p class="eyebrow">{job.focus}</p><h3>{job.role}</h3><p class="experience-org">{job.organization}</p><ul>{job.items.map(item => <li>{item}</li>)}</ul></div></article>)}</div><a class="text-link" href="https://github.com/MataVsn">{txt("Explore my open-source work", "Мои open-source проекты")} ↗</a></section>
+        <section id="research"><p class="eyebrow">03 / {txt("Research portfolio", "Исследовательское портфолио")}</p><h2>{txt("Three questions I’m exploring.", "Три вопроса, которые я исследую.")}</h2><p>{txt("My independent research explores transfer across physical sites, grounded multimodal understanding and adaptive human–AI collaboration. Each project page separates implemented prototypes from proposed experiments and published external literature.", "Мои исследования посвящены переносу между физическими объектами, мультимодальному пониманию с опорой на источник и адаптивному взаимодействию человека с AI. На страницах проектов текущие прототипы отделены от планируемых экспериментов и внешней научной литературы.")}</p><div class="personal-research">{research.map(item => { const project = projects.find(project => project.id === item.id)!; return <a href={prefix + project.path} style={`--research-color:${project.color}`}><span class="eyebrow">{project.id === "geoai" ? "Spatiotemporal ML" : project.id === "multimodal" ? "Multimodal AI" : "Human–AI decision systems"}</span><h3>{project.name} <span aria-hidden="true">↗</span></h3><p>{item.detail}</p></a>; })}</div><p class="small muted">{txt("Voice and Enterprise are additional applied projects in the portfolio. Research venues listed on project pages are submission goals; they are not accepted publications.", "Voice и Enterprise — дополнительные прикладные проекты портфолио. Научные площадки на страницах проектов обозначают цели подачи, а не принятые публикации.")}</p></section>
+        <section id="skills"><p class="eyebrow">04 / {txt("Technical skills", "Технологии")}</p><h2>{txt("Models, systems and the work between.", "Модели, системы и работа между ними.")}</h2><div class="personal-skills">{skills.map(group => <article><h3>{group.name}</h3><ul>{group.items.map(item => <li>{item}</li>)}</ul></article>)}</div></section>
+        <section id="education"><p class="eyebrow">05 / {txt("Education & languages", "Образование и языки")}</p><h2>{txt("A software foundation.\nAn AI focus.", "Основа в software engineering.\nФокус на AI.")}</h2><article class="education-item"><span class="eyebrow">2026 — 2027 · {txt("In progress", "Обучение в процессе")}</span><h3>{txt("Master’s · Information Technology / Artificial Intelligence", "Магистратура · Information Technology / Artificial Intelligence")}</h3><p>QAIRU · {txt("Astana, Kazakhstan", "Астана, Казахстан")}</p></article><article class="education-item"><span class="eyebrow">2020 — 2024</span><h3>{txt("Bachelor’s · Software Engineering", "Бакалавриат · Software Engineering")}</h3><p>International Information Technology University (IITU) · {txt("Almaty, Kazakhstan", "Алматы, Казахстан")}</p></article><div class="personal-languages"><span>{txt("Russian · native", "Русский · родной")}</span><span>{txt("English · Upper-Intermediate / B2", "Английский · Upper-Intermediate / B2")}</span></div></section>
+        <section id="contact" class="personal-contact"><p class="eyebrow">06 / {txt("Contact", "Контакты")}</p><h2>{txt("Let’s talk about the work.", "Обсудим работу и исследования.")}</h2><p>{txt("For professional conversations and research collaboration, find my work on GitHub or use the contact details in my CV.", "Для профессионального общения и исследовательского сотрудничества — мои проекты на GitHub и контакты в CV.")}</p><div class="personal-actions"><a class="button button-accent" href="https://github.com/MataVsn">GitHub / MataVsn ↗</a><a class="button button-light" href={cv} download="Temirlan-Abdykarimov-CV.pdf">{txt("Download CV", "Скачать CV")} ↓</a></div><a class="personal-phone text-link" href="tel:+77474040451">+7 747 404 0451</a></section>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

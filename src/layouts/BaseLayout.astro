@@ -33,7 +33,7 @@ const theme = projects.find(project => canonicalPath.endsWith(project.path))?.id
     <nav aria-label={ru ? "Навигация" : "Navigation"}>
       <a href={home + "#projects"}>{ru ? "Проекты" : "Projects"}</a>
       <a href={home + "#reading"}>{ru ? "Материалы" : "Reading"}</a>
-      <a href={home + "#about"}>{ru ? "Об авторе" : "About"}</a>
+      <a href={(ru ? "/ru" : "") + "/about"} aria-current={canonicalPath === (ru ? "/ru" : "") + "/about" ? "page" : undefined}>{ru ? "Об авторе" : "About me"}</a>
       <a class="nav-github" href="https://github.com/MataVsn">GitHub ↗</a>
       <a href={alternatePath} lang={ru ? "en" : "ru"} hreflang={ru ? "en" : "ru"} class="lang">{ru ? "EN" : "RU"}</a>
     </nav>
@@ -41,7 +41,7 @@ const theme = projects.find(project => canonicalPath.endsWith(project.path))?.id
   <ProjectNav lang={lang} path={canonicalPath} />
   <main id="main"><slot /></main>
   <footer class="footer wrap">
-    <div><a class="footer-brand" href={home}>Vais Research</a><p>© 2026 · {ru ? "Исследовательское портфолио VAIS Labs" : "The VAIS Labs research portfolio"}</p></div>
+    <div><a class="footer-brand" href={home}>Vais Research</a><p>© 2026 · {ru ? "Исследовательское портфолио VAIS Labs" : "The VAIS Labs research portfolio"}</p><p><a href={(ru ? "/ru" : "") + "/about"}>{ru ? "Темирлан Абдыкаримов · Об авторе" : "Temirlan Abdykarimov · About me"} ↗</a></p></div>
     <nav aria-label={ru ? "Все проекты" : "All projects"}>{projects.map(project => <a href={(ru ? "/ru" : "") + project.path}>{project.name}</a>)}</nav>
     <nav aria-label={ru ? "Приложения" : "Applications"}>{projects.filter(project => project.app).map(project => <a href={project.app!}>{project.name} ↗</a>)}</nav>
   </footer>
