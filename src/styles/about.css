@@ -62,7 +62,7 @@
 .experience-item details[open] summary span { transform: rotate(45deg); }
 .experience-item ul { margin-top: 18px; margin-bottom: 0; }
 .experience-item li { font-size: 14px; }
-.personal-research { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-block: 28px; }
+.personal-research { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-block: 28px; }
 .personal-research > a { min-width: 0; text-decoration: none; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s; }
 .personal-research > a:hover { transform: translateY(-5px); box-shadow: 0 12px 24px #28365710; color: var(--fg); }
 .personal-project-art { position: relative; height: 145px; overflow: hidden; }

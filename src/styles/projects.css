@@ -1,4 +1,8 @@
 /* Project identity shared by the portfolio cards, research pages and navigation. */
+[data-project="normative-rag"], .normative-rag-card { --accent: #4f6655; --project-soft: #e1e9e1; }
+.normative-rag-card .art-label { color: #324c38; }
+.research-project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 800px) { .research-project-grid { grid-template-columns: 1fr; } }
 [data-project="multimodal"], .multimodal-card { --accent: #315c86; --project-soft: #dde7ee; }
 [data-project="human-ai"], .human-ai-card { --accent: #805329; --project-soft: #eee1cb; }
 .multimodal-card .art-label { color: #244763; }

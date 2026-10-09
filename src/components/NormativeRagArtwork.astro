@@ -1,0 +1,14 @@
+---
+// Conceptual retrieval comparison, not experimental data or a measured result.
+---
+<svg class="research-art normative-art" viewBox="0 0 700 560" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true" focusable="false">
+  <rect width="700" height="560" fill="#e1e9e1"/>
+  <g stroke="#a5b7a6" opacity=".5">{[100,190,280,370,460].map(y => <path d={`M0 ${y}H700`}/>)}{[105,245,385,525,665].map(x => <path d={`M${x} 0V560`}/>)}</g>
+  <g stroke="#4f6655" stroke-width="2" fill="#f5f3ec">
+    {[155,305,455].map((x,i) => <g><rect x={x} y="115" width="90" height="110" rx="4"/><path d={`M${x+18} 143H${x+70}M${x+18} 166H${x+62}M${x+18} 190H${x+72}`}/><path d={`M${x+45} 225V270L350 310`}/><circle cx={x+45} cy="100" r="4" fill={i===1 ? "#a34630" : "#4f6655"}/></g>)}
+    <rect x="285" y="285" width="130" height="75" rx="6"/>
+    <path d="M350 360V402M350 402H220M350 402H480M220 402V427M480 402V427"/>
+    <rect x="170" y="427" width="100" height="44" rx="4"/><rect x="430" y="427" width="100" height="44" rx="4"/>
+  </g>
+  <g fill="#4f6655" font-family="Arial,sans-serif" text-anchor="middle"><text x="350" y="330" font-size="20">SAME LLM</text><text x="220" y="455" font-size="16">ACTION A?</text><text x="480" y="455" font-size="16">ACTION B?</text><text x="350" y="66" font-size="13">DIFFERENT RETRIEVED POLICIES</text></g>
+</svg>
